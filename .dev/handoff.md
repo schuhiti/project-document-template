@@ -1,6 +1,6 @@
 ---
 type: handoff
-updated: 2026-08-29
+updated: 2026-08-30
 ---
 # Handoff — AIエージェント運用のための文書体系・整備
 
@@ -31,7 +31,7 @@ updated: 2026-08-29
 - discussion-rulesは未決定・保留の扱いに内容が偏っている。トリガー: 該当する知見が実際に繰り返し必要になった時（`.dev/scratch/discussion-rules-scope-gap.md`）
 - scratchにおける時系列記録の例外は仮運用のまま、該当事例なし
 - `skills/*/SKILL.md`に追加した`type: skill`・`updated`フィールドは仮
-- Windows環境での`.claude/skills`作成可否、Claude CodeのAGENTS.md対応状況は未確認（トリガーはADR-0012を書き写した内容としてAGENTS.mdに明記済み）
+- Windows環境（管理者権限なし・開発者モード無効）で`.claude/skills`のsymlink作成を試行: `ln -s`はエラーを出さず成功したように見えるが、実体は`.agents/skills`と独立したコピーになり、リンクとして機能しない（片方への書き込みがもう片方に反映されない）。原因は管理者権限も開発者モードも無いこと（CLAUDE.mdでシンボリックリンク方式を避けた理由=AGENTS.md冒頭と同じ制約）。AGENTS.md「必ず行うこと」4にこの根本原因と、事後確認用の`[ -L .claude/skills ]`検証手順の両方を追記済み。危険な独立コピーは削除済み。管理者権限または開発者モードが使える環境、あるいはClaude CodeがAGENTS.mdへ直接対応した場合に再確認
 - flat-fileチケットツール導入要否は保留。トリガー: ローカルでのGitHub往復が実際に摩擦になるか
 - Handoffテンプレートは単一の作業スレッドのみを想定。複数スレッド並行時の構成は未検証
 - `.dev/todo.md`をgitで管理するか（.gitignore対象にするか）は未決定
