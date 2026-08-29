@@ -12,6 +12,8 @@
 # - root自身のdocs/adr/index.mdは、ADRの新規作成をやめたため静的なファイルであり、
 #   自動生成しない（生成する対象が増えることが無いため）。新たにADRを追加する
 #   稀な例外が生じた場合は手動で更新する
+# - zip作成は`zip`コマンド優先、無ければWindows標準のpowershell.exe（Compress-Archive）に
+#   フォールバックする（Git Bashに`zip`が同梱されていないため）
 set -e
 BASE="$(cd "$(dirname "$0")/.." && pwd)"
 TPL="$BASE/project-template"
@@ -41,7 +43,15 @@ done
 
 # 4. zipを再作成
 rm -f "$BASE/project-template.zip"
-cd "$TPL"
-zip -r "$BASE/project-template.zip" . -x '*.DS_Store' > /dev/null
+if command -v zip >/dev/null 2>&1; then
+  (cd "$TPL" && zip -r "$BASE/project-template.zip" . -x '*.DS_Store' > /dev/null)
+elif command -v powershell.exe >/dev/null 2>&1; then
+  WIN_TPL="$(cygpath -w "$TPL")"
+  WIN_ZIP="$(cygpath -w "$BASE/project-template.zip")"
+  powershell.exe -NoProfile -Command "Compress-Archive -Path '${WIN_TPL}\*' -DestinationPath '${WIN_ZIP}'"
+else
+  echo "警告: zipもpowershell.exeも見つからないため project-template.zip を作成できなかった（project-template/ 自体は作成済み）" >&2
+  exit 1
+fi
 
 echo "ビルド完了。project-template/ をゼロから再構築した。"
