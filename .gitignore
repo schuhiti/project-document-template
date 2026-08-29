@@ -1,3 +1,6 @@
 # ビルド成果物（.dev/build-template.sh で再生成できる）
 /project-template/
 /project-template.zip
+
+# Windowsではリンク/ジャンクションを移植できないためコミットしない（AGENTS.md「必ず行うこと」4）
+/.claude/
