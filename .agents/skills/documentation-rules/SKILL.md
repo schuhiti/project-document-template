@@ -2,7 +2,7 @@
 name: documentation-rules
 description: 文書（ADR・premise・knowledge・handoff・scratch・todo・skill等）に何を書き、どう運用するかの判断基準。文書の内容・構造・置き場所に関わる判断（何を書くか、どこに置くか、frontmatterの要否等）を伴う場合は、1行の追記であっても必ず参照する。誤字・表記ゆれなど判断を伴わない機械的な修正は対象外。
 type: skill
-updated: 2026-08-29
+updated: 2026-08-30
 ---
 
 # 文書化のルール
@@ -32,18 +32,18 @@ updated: 2026-08-29
 - 外部で規約が確立している文書・ディレクトリは、その規約に従うことを優先し、本Skillの規約（frontmatter・index.md）の対象外とする
   - `AGENTS.md`（AGENTS.md仕様）
   - `CLAUDE.md`（Claude Code仕様。内容は`@AGENTS.md`のみ）
-  - `.agents/`配下すべて（Agent Skills / AGENTS.mdエコシステムの標準構造。ADR-0011）。ただし`SKILL.md`には横断検索のため`type: skill`・`updated`を追加で付与する（仕様と両立する）。Claude Code用の`.claude/skills`はここへのシンボリックリンク
+  - `.agents/`配下すべて（Agent Skills / AGENTS.mdエコシステムの標準構造）。ただし`SKILL.md`には横断検索のため`type: skill`・`updated`を追加で付与する（仕様と両立する）。Claude Code用の`.claude/skills`はここへのシンボリックリンク
 - `SETUP.md`等、使い捨てのオンボーディング文書は永続的な知識体系に属さないためfrontmatter対象外
 - `README.md`等、ディレクトリの説明・ナビゲーション用の文書もfrontmatter対象外（`index.md`は機械的な一覧に限定するため、説明文はREADME側に書き分ける）
 - 対象外の一覧は本Skillが保持する。新たな対象外が生じた場合はここに追記する
 - 各ディレクトリに軽量な`index.md`（`type: index`）を置く。ディレクトリを作る時点で一緒に用意する。ファイルを追加した際は、そのディレクトリの`index.md`にも1行追加する。ファイルを削除した際は該当行も削除する
-  - `.agents/`配下は対象外（ADR-0011）
+  - `.agents/`配下は対象外
   - リポジトリ直下には`index.md`を置かない。`AGENTS.md`のドキュメント参照表は「いつ何を読むか」のルーティング表であり、ファイル一覧ではない
 
 ## 決定・経緯を書く際の分量基準
 - 決定の理由や却下した代替案が1〜2文で書けるなら、決定が反映される場所（documentation-rulesの該当箇所、knowledge等）にそのまま書き添える。独立したファイルは作らない
 - 分量が増える場合（複数の論点、比較、詳細な理由）は独立したファイルに分け、決定が反映される場所には1行のポインタだけを残す
-- 独立したファイルの置き場所は確定度で決める。まだ議論中・確定前なら`scratch`（却下した方針とその理由はADR-0004の記録対象）、確定済みで残す価値があるなら`knowledge`。scratchのtriage先は`references/document-types.md`のscratch行を参照
+- 独立したファイルの置き場所は確定度で決める。まだ議論中・確定前なら`scratch`（却下した方針とその理由を含む）、確定済みで残す価値があるなら`knowledge`。scratchのtriage先は`references/document-types.md`のscratch行を参照
 
 ## 構成要素を追加・移動したときの登録先
 
