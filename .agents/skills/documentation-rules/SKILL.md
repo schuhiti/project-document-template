@@ -28,6 +28,7 @@ updated: 2026-08-30
 
 ## フロントマター規約
 - 自前の文書種別（`premise`/`adr`/`knowledge`/`handoff`/`scratch`/`template`/`index`/`todo`）にはYAML frontmatterを付与する。必須は`type`のみ。`status`・`updated`・`tags`は種別に応じて任意
+- `tags`はドメイン・性質による複数文書のグルーピングに使う。値を追加する前に、既存の文書と共有できる値かを確認し、共有先が無い一意の値（ファイル名やタイトルの言い換え等）は追加しない
 - 独自の詳細なスキーマは設計しない（複雑さに見合う利益が無い）。frontmatterを完全に省く案も、将来的な検索性を損なうため採らない
 - `todo`（`.dev/todo.md`）は`type: todo`のみで足りる。`updated`は更新頻度が高く鮮度追跡の意味が薄いため付与しなくてよい。最小形:
   ```

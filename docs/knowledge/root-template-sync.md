@@ -1,6 +1,6 @@
 ---
 type: knowledge
-tags: [structure, root-template-sync]
+tags: [structure, template-distribution]
 updated: 2026-08-30
 ---
 # root/templateのビルド
