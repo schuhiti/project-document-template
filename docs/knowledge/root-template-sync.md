@@ -14,12 +14,12 @@ root（このプロジェクト自身）と`project-template/`（配布用テン
 - テンプレート固有の一次情報は`.dev/template-src/`にソースとして置く（`project-template/`と同じディレクトリ構造）
 - `project-template/`はビルド成果物として扱い、実行のたびに丸ごと削除して作り直す（差分更新はしない）。これにより「同期対象か手動維持か」の判断自体が不要になる
 - rootと内容が同一であるべきファイルは許可リスト方式でスクリプトに列挙する
-- root自身の`docs/adr/index.md`はADR個票から機械生成する（rootの決定履歴は凍結して残す。templateには同梱しない）
+- root自身の`docs/adr/index.md`はADRの新規作成をやめたため静的（`docs/knowledge/adr-retirement.md`参照）。自動生成はせず、稀な例外でADRを追加する場合のみ手動で更新する
 - root側`docs/index.md`はビルド対象外。手動で個別に維持する
 
 ## root専用（templateに存在しない）
 
-`docs/premise.md`、`handoff.md`、`.dev/scratch/*`、`docs/knowledge/*`、`AGENTS.md`（内容がテンプレート版と異なるため。以下参照）
+`docs/premise.md`、`handoff.md`、`.dev/scratch/*`、`docs/knowledge/*`、`docs/adr/`（凍結された自プロジェクトの決定履歴）、`AGENTS.md`（内容がテンプレート版と異なるため。以下参照）
 
 ## テンプレート固有の一次情報（`.dev/template-src/`に保持）
 
