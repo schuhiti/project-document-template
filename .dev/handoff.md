@@ -15,7 +15,7 @@ updated: 2026-08-31
 - `.dev/notes/`（人間専用メモ）は必要性が無かったため削除済み
 - テンプレート配布は`.dev/template-src/`（一次情報: SETUP.md・テンプレート版docs/index.md・AGENTS.md・docs/system.md）+ rootの共有ファイル（CLAUDE.md等） → `.dev/build-template.sh`（zip作成は`zip`優先、Windowsでは`powershell.exe`の`Compress-Archive`へフォールバック） → `project-template/`・`project-template.zip`（ビルド成果物、`.gitignore`対象、コミット不要）。テンプレートにADRは同梱しない
 - root版`AGENTS.md`とテンプレート版は内容が異なる: root版はこのプロジェクト自身の文書体系フレームワークそのもの（このプロジェクトにとって正しい構成のため無変更）。テンプレート版は「プロジェクト固有の指示を書く薄いAGENTS.md」＋「ドキュメント運用ルール本体のdocs/system.md」に分割済み（配布先プロジェクトが自分固有のAGENTS.md慣習と衝突しないようにするため。分割は自動生成ではなく手動維持。`docs/knowledge/root-template-sync.md`参照）
-- Claude Code/Codex双方への適合が済んでいる（`.agents/skills/`、`CLAUDE.md`）。`.claude/skills`のWindows対応も決着済み: 管理者権限・開発者モードが無い環境では`ln -s`がエラーなく独立コピーを作ってしまうため`[ -L ]`で検証し、Windowsでは`.gitignore`で除外してセッションごとに作り直す運用（AGENTS.md「必ず行うこと」4＝配布版では`docs/system.md`の4に反映済み）
+- Claude Code/Codex双方への適合が済んでいる（`.agents/skills/`、`CLAUDE.md`）。`.claude/skills`のWindows対応も決着済み: 管理者権限・開発者モードが無い環境では`ln -s`がエラーなく独立コピーを作ってしまうため`[ -L ]`で検証し、Windowsでは`.git/info/exclude`（ローカル限定）で除外してセッションごとに作り直す運用（AGENTS.md「必ず行うこと」4＝配布版では`docs/system.md`の4に反映済み）
 - 生きた文書（SKILL.md・document-types.md・docs/index.md）からの装飾的なADR番号引用は整理済み。scratchの2ファイルにあった「skill昇格基準」の誤引用（正しい参照先はADR-0004ではなく`document-types.md`のskill行）も修正済み
 - documentation-rulesに「文章構造の原則」（手順と理由を分離する、自明な補集合を重ねて書かない、主題語の反復を避ける、実装手段の詳細を二重に書かない）を追加済み
 - `tags`の用途をドメイン・性質による複数文書のグルーピングに限定し、共有先の無い一意の値（ファイル名の言い換え等）を禁止した
@@ -23,6 +23,8 @@ updated: 2026-08-31
 - documentation-rulesの一部の規約（frontmatter必須・handoff行数目安・index.md整合）をClaude Codeのhookで機械チェックするようにした。`.claude/settings.json` + `.claude/hooks/*.sh`（PostToolUse 3種 + Stop/PreCompactのリマインダー1種）。あわせて`.gitignore`の`/.claude/`除外をシンボリックリンク（`skills`）・worktree・ローカル設定のみに絞り、`settings.json`/`hooks/`はコミット対象にした。Codex側は同種のhookが理論上可能（`apply_patch`をmatcherにする）だが今回は未着手、セッション境界hookは`.dev/scratch/codex-session-boundary-hook.md`参照で保留
 - 上記により`.claude`がセッション開始時に空から作られる前提が崩れたため、AGENTS.md「必ず行うこと」4の破壊的フォールバック（真のリンクでない場合の削除範囲）を`.claude`ごと→`.claude/skills`のみに縮小した。テンプレート側（`.dev/template-src/docs/system.md`）はhookを配布していないため対象外で変更不要
 - 上記の副産物として見つかった別件も対応済み: `.gitignore`が`/.claude/skills`をOS問わず一律除外しており、AGENTS.md「必ず行うこと」4の「Linux/macOSはそのままコミットする」という記述と矛盾していた。除外をWindows専用のローカル除外`.git/info/exclude`へ移し、共有`.gitignore`からは外した（Claude Code自身が`.claude/worktrees/`で同じ手法を既に使っていた前例に倣った）
+- AGENTS.md「必ず行うこと」4を文章構造の原則（手順と理由の分離）に沿って整理した。手順中に埋め込んでいた理由節を末尾の「理由:」へ集約
+- hookの実効性を洗い直した。`Stop`/`PreCompact`のexit 0出力（stdout/stderr）はデバッグログのみでClaudeに届かないと判明（公式ドキュメント・実機両方で確認）。`session-boundary-reminder.sh`を`hookSpecificOutput.additionalContext`形式に書き換えて修正済み（Stop/PreCompactとも対応、PreCompactでは圧縮後も内容が保持される）。同じ問題が`pre-commit-doc-reminder.sh`（PreToolUse）にもあるが、こちらは`additionalContext`非対応でブロックする以外にClaudeへ届ける手段が無く、ブロックすると同一条件で無限ループする。対応案は`.dev/scratch/pre-commit-hook-reach-claude.md`で検討中
 
 ## なぜそうしているか (Why)
 
