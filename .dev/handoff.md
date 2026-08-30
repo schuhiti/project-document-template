@@ -1,6 +1,6 @@
 ---
 type: handoff
-updated: 2026-08-30
+updated: 2026-08-31
 ---
 # Handoff — AIエージェント運用のための文書体系・整備
 
@@ -20,6 +20,8 @@ updated: 2026-08-30
 - documentation-rulesに「文章構造の原則」（手順と理由を分離する、自明な補集合を重ねて書かない、主題語の反復を避ける、実装手段の詳細を二重に書かない）を追加済み
 - `tags`の用途をドメイン・性質による複数文書のグルーピングに限定し、共有先の無い一意の値（ファイル名の言い換え等）を禁止した
 - scratch/knowledgeの見直し契機が「定期的」としか書かれておらず未定義だった問題を修正: scratchはセッション境界で`index.md`を確認、knowledgeは参照時に正しさを確認する、という具体的な手続きを`document-types.md`に追記した
+- documentation-rulesの一部の規約（frontmatter必須・handoff行数目安・index.md整合）をClaude Codeのhookで機械チェックするようにした。`.claude/settings.json` + `.claude/hooks/*.sh`（PostToolUse 3種 + Stop/PreCompactのリマインダー1種）。あわせて`.gitignore`の`/.claude/`除外をシンボリックリンク（`skills`）・worktree・ローカル設定のみに絞り、`settings.json`/`hooks/`はコミット対象にした。Codex側は同種のhookが理論上可能（`apply_patch`をmatcherにする）だが今回は未着手、セッション境界hookは`.dev/scratch/codex-session-boundary-hook.md`参照で保留
+- 上記により`.claude`がセッション開始時に空から作られる前提が崩れたため、AGENTS.md「必ず行うこと」4の破壊的フォールバック（真のリンクでない場合の削除範囲）を`.claude`ごと→`.claude/skills`のみに縮小した。テンプレート側（`.dev/template-src/docs/system.md`）はhookを配布していないため対象外で変更不要
 
 ## なぜそうしているか (Why)
 

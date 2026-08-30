@@ -3,4 +3,7 @@
 /project-template.zip
 
 # Windowsではリンク/ジャンクションを移植できないためコミットしない（AGENTS.md「必ず行うこと」4）
-/.claude/
+/.claude/skills
+# Claude Codeが生成する作業ディレクトリ・個人用ローカル設定（配布不要）
+/.claude/worktrees
+/.claude/settings.local.json
