@@ -24,7 +24,8 @@ updated: 2026-08-31
 - 上記により`.claude`がセッション開始時に空から作られる前提が崩れたため、AGENTS.md「必ず行うこと」4の破壊的フォールバック（真のリンクでない場合の削除範囲）を`.claude`ごと→`.claude/skills`のみに縮小した。テンプレート側（`.dev/template-src/docs/system.md`）はhookを配布していないため対象外で変更不要
 - 上記の副産物として見つかった別件も対応済み: `.gitignore`が`/.claude/skills`をOS問わず一律除外しており、AGENTS.md「必ず行うこと」4の「Linux/macOSはそのままコミットする」という記述と矛盾していた。除外をWindows専用のローカル除外`.git/info/exclude`へ移し、共有`.gitignore`からは外した（Claude Code自身が`.claude/worktrees/`で同じ手法を既に使っていた前例に倣った）
 - AGENTS.md「必ず行うこと」4を文章構造の原則（手順と理由の分離）に沿って整理した。手順中に埋め込んでいた理由節を末尾の「理由:」へ集約
-- hookの実効性を洗い直した。`Stop`/`PreCompact`のexit 0出力（stdout/stderr）はデバッグログのみでClaudeに届かないと判明（公式ドキュメント・実機両方で確認）。`session-boundary-reminder.sh`を`hookSpecificOutput.additionalContext`形式に書き換えて修正済み（Stop/PreCompactとも対応、PreCompactでは圧縮後も内容が保持される）。同じ問題が`pre-commit-doc-reminder.sh`（PreToolUse）にもあるが、こちらは`additionalContext`非対応でブロックする以外にClaudeへ届ける手段が無く、ブロックすると同一条件で無限ループする。対応案は`.dev/scratch/pre-commit-hook-reach-claude.md`で検討中
+- hookの実効性を洗い直した。`Stop`/`PreCompact`のexit 0出力（stdout/stderr）はデバッグログのみでClaudeに届かないと判明（公式ドキュメント・実機両方で確認）。`session-boundary-reminder.sh`を`hookSpecificOutput.additionalContext`形式に書き換えて修正済み（Stop/PreCompactとも対応、PreCompactでは圧縮後も内容が保持される）。さらにStopは毎ターン発火するため、作業ツリーがクリーンかつ`.dev/todo.md`が空なら鳴らさない条件を追加した
+- `pre-commit-doc-reminder.sh`（PreToolUse、commit前チェック）は廃止した。PreToolUseは`additionalContext`非対応でブロックする以外にClaudeへ届ける手段が無く、ブロックすると同一条件で無限ループするため。理由と却下した代替案は`docs/knowledge/pretooluse-hook-limits.md`に記録し、対応するscratchは削除した。以後commit前の文書構造確認は習慣（`git diff --staged`を読む）で対応する
 
 ## なぜそうしているか (Why)
 

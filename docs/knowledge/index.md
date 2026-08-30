@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-08-29
+updated: 2026-08-31
 ---
 # knowledge 索引
 
@@ -10,3 +10,4 @@ updated: 2026-08-29
 | [documentation-system-unverified.md](documentation-system-unverified.md) | 文書体系の効果は未検証 |
 | [adr-retirement.md](adr-retirement.md) | ADRの新規作成をやめた |
 | [knowledge-type-rejected-alternatives.md](knowledge-type-rejected-alternatives.md) | knowledge種別の設計で却下した代替案 |
+| [pretooluse-hook-limits.md](pretooluse-hook-limits.md) | PreToolUseフックでのcommit前チェックは廃止した |
