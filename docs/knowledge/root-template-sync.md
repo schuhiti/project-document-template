@@ -19,7 +19,7 @@ root（このプロジェクト自身）と`project-template/`（配布用テン
 
 ## root専用（templateに存在しない）
 
-`docs/premise.md`、`handoff.md`、`.dev/scratch/*`、`docs/knowledge/*`、`docs/adr/`（凍結された自プロジェクトの決定履歴）、`AGENTS.md`（内容がテンプレート版と異なるため。以下参照）
+`docs/premise.md`、`handoff.md`、`.dev/scratch/*`、`docs/knowledge/*`、`docs/adr/`（凍結された自プロジェクトの決定履歴）、`AGENTS.md`（内容がテンプレート版と異なるため。以下参照）、`README.md`（このリポジトリ自身を説明する文書であり、配布先プロジェクトは自分自身のREADMEを別途持つべきため同梱しない）
 
 ## テンプレート固有の一次情報（`.dev/template-src/`に保持）
 
