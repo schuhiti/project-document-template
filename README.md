@@ -12,6 +12,10 @@
 2. `.dev/build-template.sh` を実行し、`project-template/`（と`project-template.zip`）を生成する
 3. 生成された中身を新しいプロジェクトにコピーし、`SETUP.md` の手順に従う
 
+## ツール対応方針
+
+特定のAIエージェントに固定しないことを目指すが、それ自体を主目的とはしない。Claude Code・Codexそれぞれのネイティブな機能（skillsの配置、hook等）を使うことを許容し、両者を統一的に吸収する互換レイヤーの開発は目指さない。詳細は [docs/knowledge/tool-neutrality-scope.md](docs/knowledge/tool-neutrality-scope.md) を参照。
+
 ## このリポジトリ自体について
 
 このリポジトリ自身も、このテンプレートが提案する文書体系に従って運用している。`AGENTS.md` がエージェント向け指示の起点で、`docs/system.md` 相当の内容は `AGENTS.md` に統合されている（配布用テンプレート側では `AGENTS.md` と `docs/system.md` に分割済み。理由は [docs/knowledge/root-template-sync.md](docs/knowledge/root-template-sync.md) を参照）。
