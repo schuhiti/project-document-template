@@ -6,8 +6,11 @@
 #   これにより「このファイルは同期対象か手動維持か」を都度判断する必要が無くなる
 # - テンプレート固有の一次情報（root側に対応物が無いもの、またはroot側と役割が
 #   異なるもの）は .dev/template-src/ にソースとして置く。SETUP.md、
-#   docs/index.md（テンプレート版）、AGENTS.md、docs/system.md がこれに該当する
-#   （AGENTS.md/docs/system.mdの分割理由はdocs/knowledge/root-template-sync.md参照）
+#   docs/index.md（テンプレート版）、AGENTS.md、docs/system.md、.claude/settings.json
+#   がこれに該当する（AGENTS.md/docs/system.mdの分割理由はdocs/knowledge/root-template-sync.md参照。
+#   .claude/settings.jsonはroot版がStop/PreCompactのhookも含み中身が異なるため
+#   ここに置く。参照先のhookスクリプト自体（.claude/hooks/*.sh）は中身が同一
+#   なのでSHARED_FILESに列挙する）
 # - rootとtemplateで内容が同一であるべきファイルは許可リスト方式でここに列挙する
 # - docs/adr/ はrootのみに存在する（凍結された自プロジェクトの決定履歴）。
 #   ADRは使わない方針を推奨しており、テンプレートには同梱しない
@@ -40,6 +43,9 @@ SHARED_FILES=(
   ".agents/skills/documentation-rules/references/document-types.md"
   ".dev/handoff-template.md"
   ".dev/index.md"
+  ".claude/hooks/check-frontmatter.sh"
+  ".claude/hooks/check-handoff-length.sh"
+  ".claude/hooks/check-index-sync.sh"
 )
 for f in "${SHARED_FILES[@]}"; do
   mkdir -p "$(dirname "$TPL/$f")"

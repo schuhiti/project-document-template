@@ -11,4 +11,4 @@ updated: 2026-08-31
 
 背景: hookをフレームワークの一部として配布すべきか検討する中で、hookがClaude Code固有の機構であることが「特定のツールに固定しない」という前提と衝突するように見えたため、前提の意味を明確化した。
 
-範囲: どの程度の互換性スクリプト・自動化を用意するかは別途検討する（[.dev/scratch/hook-template-distribution-setup.md](../../.dev/scratch/hook-template-distribution-setup.md)参照、未着手）。
+互換性スクリプトをどの程度用意するかの最初の適用例は[hook-distribution-policy.md](hook-distribution-policy.md)（Codex互換hookは需要が出るまで見送り）を参照。

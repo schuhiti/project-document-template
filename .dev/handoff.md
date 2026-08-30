@@ -26,7 +26,7 @@ updated: 2026-08-31
 - AGENTS.md「必ず行うこと」4を文章構造の原則（手順と理由の分離）に沿って整理した。手順中に埋め込んでいた理由節を末尾の「理由:」へ集約
 - hookの実効性を洗い直した。`Stop`/`PreCompact`のexit 0出力（stdout/stderr）はデバッグログのみでClaudeに届かないと判明（公式ドキュメント・実機両方で確認）。`session-boundary-reminder.sh`を`hookSpecificOutput.additionalContext`形式に書き換えて修正済み（Stop/PreCompactとも対応、PreCompactでは圧縮後も内容が保持される）。さらにStopは毎ターン発火するため、作業ツリーがクリーンかつ`.dev/todo.md`が空なら鳴らさない条件を追加した
 - `pre-commit-doc-reminder.sh`（PreToolUse、commit前チェック）は廃止した。PreToolUseは`additionalContext`非対応でブロックする以外にClaudeへ届ける手段が無く、ブロックすると同一条件で無限ループするため。理由と却下した代替案は`docs/knowledge/pretooluse-hook-limits.md`に記録し、対応するscratchは削除した。以後commit前の文書構造確認は習慣（`git diff --staged`を読む）で対応する
-- hookをテンプレートとして配布するかを検討し、方針を決定した（`docs/knowledge/hook-distribution-policy.md`）: jq依存は許容し無ければhookを設定しない、Stop hookはroot専用としテンプレートへは配布しない。あわせて「ツールに固定しない」前提が互換レイヤー開発を意味しない旨を`docs/knowledge/tool-neutrality-scope.md`・READMEに明記した。具体的な配布実装（jq有無に応じたセットアップ手順、Codex互換性の範囲）は`.dev/scratch/hook-template-distribution-setup.md`で検討中
+- hookのテンプレート配布を決定・実装した（`docs/knowledge/hook-distribution-policy.md`）: frontmatter必須・handoff行数目安・index.md整合の3種を配布（hookスクリプトはSHARED_FILES、settings.jsonはroot版と内容が違うため`.dev/template-src/.claude/settings.json`で個別管理）。Stop hookはroot専用のまま配布しない。`jq`が無い環境向けの条件分岐はスクリプト化せず`SETUP.md`への手順追記のみ。Codex互換hookは需要が出るまで見送り。あわせて「ツールに固定しない」前提が互換レイヤー開発を意味しない旨を`docs/knowledge/tool-neutrality-scope.md`・READMEに明記した
 
 ## なぜそうしているか (Why)
 

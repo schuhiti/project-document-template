@@ -15,7 +15,7 @@
 
 **Codex**: `.agents/skills/`・`AGENTS.md`とも直接読むため、追加の作業は不要。
 
-**Claude Code**: `CLAUDE.md`（`@AGENTS.md`のみを書いたファイル）は同梱済みで、追加の作業は不要。Skillだけは例外で、`.claude/skills`が必要（`docs/system.md`の「セッション開始・再開時に必ず行うこと」4に手順とコマンドがある。初回セッションでAI自身が作成する）。
+**Claude Code**: `CLAUDE.md`（`@AGENTS.md`のみを書いたファイル）は同梱済みで、追加の作業は不要。Skillだけは例外で、`.claude/skills`が必要（`docs/system.md`の「セッション開始・再開時に必ず行うこと」4に手順とコマンドがある。初回セッションでAI自身が作成する）。`.claude/settings.json`・`.claude/hooks/`（frontmatter必須・handoff行数目安・index.md整合をPostToolUseで機械チェックするhook）も同梱済みだが、`jq`コマンドに依存する。`jq --version`が通らない環境では、この2つを削除する（無いまま残すとhookがエラーになる）。
 
 ## 3. AIエージェントを特定ツールに固定するか決める
 
