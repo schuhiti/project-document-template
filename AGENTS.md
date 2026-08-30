@@ -10,7 +10,7 @@ Claude Code用の`CLAUDE.md`のように他ツール固有のファイルが必�
 1. `docs/premise.md` を読む
 2. `.dev/handoff.md` が存在すれば読む（前回セッションからの引き継ぎ状態）
 3. 2で食い違いに気づいた場合、現在の作業状況は `.dev/handoff.md` を優先する。前提や決定そのものが対象なら、機械的にどちらかを正とせず、各文書の`updated`を手がかりに人間へ報告して確認を仰ぐ。すぐに応答が無ければ、無関係な作業は進めてよい
-4. `.claude/skills` が無ければ作る: `mkdir -p .claude && ln -s ../.agents/skills .claude/skills` を実行し、`[ -L .claude/skills ]`で真のリンクか検証する。偽であれば`.claude/skills`だけ削除し（`.claude`には他にコミット対象の設定・hookがあるためディレクトリごとは削除しない）、管理者権限・開発者モードが無い旨を記録した上で作成できる環境で再確認する。真であれば、Linux/macOSはそのままコミットし、Windowsではコミットせずセッションごとにその場で作り直す（暫定運用）。理由: Windowsで管理者権限・開発者モードが無いと`ln -s`はエラーを出さず独立コピーを作ってしまう（冒頭でCLAUDE.mdをシンボリックリンクにしなかった理由と同じ制約）ため事後検証が必須で、真のリンクが作れてもWindowsのリンク/ジャンクションは絶対パス依存かつ`core.symlinks=false`のため他環境へ移植・コミットできない。見直し条件: Claude CodeがAGENTS.mdへ直接対応する等、ツールの対応状況が変わった場合
+4. `.claude/skills` が無ければ作る: `mkdir -p .claude && ln -s ../.agents/skills .claude/skills` を実行し、`[ -L .claude/skills ]`で真のリンクか検証する。偽であれば`.claude/skills`だけ削除し（`.claude`には他にコミット対象の設定・hookがあるためディレクトリごとは削除しない）、管理者権限・開発者モードが無い旨を記録した上で作成できる環境で再確認する。真であれば、Linux/macOSはそのままコミットする。Windowsではコミットせず、`.git/info/exclude`（共有の`.gitignore`ではなくローカル限定の除外）に`.claude/skills`が無ければ追記した上で、セッションごとにその場で作り直す（暫定運用）。理由: Windowsで管理者権限・開発者モードが無いと`ln -s`はエラーを出さず独立コピーを作ってしまう（冒頭でCLAUDE.mdをシンボリックリンクにしなかった理由と同じ制約）ため事後検証が必須で、真のリンクが作れてもWindowsのリンク/ジャンクションは絶対パス依存かつ`core.symlinks=false`のため他環境へ移植・コミットできない。見直し条件: Claude CodeがAGENTS.mdへ直接対応する等、ツールの対応状況が変わった場合
 
 ## ドキュメントの参照先
 
