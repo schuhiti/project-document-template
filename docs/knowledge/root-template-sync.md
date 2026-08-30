@@ -27,4 +27,4 @@ root（このプロジェクト自身）と`project-template/`（配布用テン
 
 テンプレート版`AGENTS.md`・`docs/system.md`は、root版`AGENTS.md`を「プロジェクト固有の指示を書く薄いAGENTS.md」と「ドキュメント運用ルール本体（docs/system.md）」に分割したもの。root版`AGENTS.md`をそのまま配布すると、配布先プロジェクト自身の固有の指示（AGENTS.mdエコシステムで一般的に書かれる内容）を書く場所が無くなるため分離した。自動生成はせず、root版`AGENTS.md`を大きく変更した際に手動で反映する。
 
-この分割により、共有ファイル（許可リスト方式でroot/templateへ同一内容のままコピーされるファイル。`documentation-rules/SKILL.md`等）の中で「ドキュメントの参照先」の実体を`AGENTS.md`と名指しする記述は、template側では誤りになる（実体は`docs/system.md`にあるため）。共有ファイルでは、置き場所をファイル名で名指しせず「ドキュメント参照表」のように役割で参照する。
+共有ファイル（許可リスト方式でroot/templateへ同一内容のままコピーされるファイル。`documentation-rules/SKILL.md`等）は、root自身の個別の選択（ADR運用の停止、AGENTS.md/docs/system.mdへの分割等）を前提にした記述を書かない。配布先プロジェクトはroot/templateの分割構造自体を持たないため、その前提での助言は意味を成さない。前提が変わりうる場合は条件を明示するか、条件によらない書き方にする。例: 「ドキュメントの参照先」の実体を`AGENTS.md`と名指しする記述は、docs/system.mdに分離したtemplate側では誤りになるため、置き場所をファイル名でなく「ドキュメント参照表」のように役割で参照する。
