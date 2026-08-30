@@ -26,3 +26,5 @@ root（このプロジェクト自身）と`project-template/`（配布用テン
 `SETUP.md`、`docs/index.md`（テンプレート版の内容）、`AGENTS.md`（テンプレート版）、`docs/system.md`
 
 テンプレート版`AGENTS.md`・`docs/system.md`は、root版`AGENTS.md`を「プロジェクト固有の指示を書く薄いAGENTS.md」と「ドキュメント運用ルール本体（docs/system.md）」に分割したもの。root版`AGENTS.md`をそのまま配布すると、配布先プロジェクト自身の固有の指示（AGENTS.mdエコシステムで一般的に書かれる内容）を書く場所が無くなるため分離した。自動生成はせず、root版`AGENTS.md`を大きく変更した際に手動で反映する。
+
+この分割により、共有ファイル（許可リスト方式でroot/templateへ同一内容のままコピーされるファイル。`documentation-rules/SKILL.md`等）の中で「ドキュメントの参照先」の実体を`AGENTS.md`と名指しする記述は、template側では誤りになる（実体は`docs/system.md`にあるため）。共有ファイルでは、置き場所をファイル名で名指しせず「ドキュメント参照表」のように役割で参照する。
