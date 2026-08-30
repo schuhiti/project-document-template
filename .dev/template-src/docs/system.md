@@ -1,0 +1,27 @@
+# ドキュメント運用のルール
+
+`AGENTS.md`から参照される。本文は最小限に保ち、詳細は各ドキュメントへのポインタに留める。
+
+## セッション開始・再開時に必ず行うこと
+1. `docs/premise.md` を読む
+2. `.dev/handoff.md` が存在すれば読む（前回セッションからの引き継ぎ状態）
+3. 2で食い違いに気づいた場合、現在の作業状況は `.dev/handoff.md` を優先する。前提や決定そのものが対象なら、機械的にどちらかを正とせず、各文書の`updated`を手がかりに人間へ報告して確認を仰ぐ。すぐに応答が無ければ、無関係な作業は進めてよい
+4. `.claude/skills` が無ければ作る: `mkdir -p .claude && ln -s ../.agents/skills .claude/skills` を実行し、`[ -L .claude/skills ]`で真のリンクか検証する。偽であれば`.claude`ごと削除し、管理者権限・開発者モードが無い旨を記録した上で作成できる環境で再確認する。真であれば、Linux/macOSはそのままコミットし、Windowsではコミットせずセッションごとにその場で作り直す（暫定運用）。理由: Windowsで管理者権限・開発者モードが無いと`ln -s`はエラーを出さず独立コピーを作ってしまう（`AGENTS.md`でCLAUDE.mdをシンボリックリンクにしなかった理由と同じ制約）ため事後検証が必須で、真のリンクが作れてもWindowsのリンク/ジャンクションは絶対パス依存かつ`core.symlinks=false`のため他環境へ移植・コミットできない。Claude CodeがAGENTS.mdへ直接対応する等、ツールの対応状況が変わった場合はこの項目全体を見直す
+
+## ドキュメントの参照先
+
+| 種別 | type値 | 場所 | 参照タイミング |
+|---|---|---|---|
+| プロジェクト前提 | `premise` | `docs/premise.md` | 常時 |
+| 決定とその理由 | `adr` | `docs/adr/` | 関連作業時 |
+| 判断も手順も伴わない確定した内容（ドメイン概念・外部APIの癖・自システムの設計内容等） | `knowledge` | `docs/knowledge/` | オンデマンド |
+| 検討メモ | `scratch` | `.dev/scratch/` | オンデマンド（`.dev/handoff.md`のポインタ経由） |
+| 手順・ルール（議論の進め方／文書化の判断／設計実装の作法） | `skill` | `.agents/skills/`（SKILL.md）。Claude Code用の`.claude/skills`は「必ず行うこと」4を参照 | 該当タスク時 |
+| 引き継ぎ状態 | `handoff` | `.dev/handoff.md` | セッション開始・再開時 |
+| セッション内の実行項目 | `todo` | `.dev/todo.md` | セッション内で自由に |
+| 索引 | `index` | 各ディレクトリの`index.md` | オンデマンド |
+| 実行項目・状態（doneが明確でセッションをまたぐもの） | — | GitHub Issues | 作業計画時 |
+| 未決着の議論 | — | GitHub Discussions | 該当議論時 |
+
+## 文書を書く際の原則
+→ `.agents/skills/documentation-rules/SKILL.md` を参照。議論の進め方は `.agents/skills/discussion-rules/SKILL.md` を参照。

@@ -6,7 +6,8 @@
 
 以下は質問ではなく、このテンプレートの既定方針。変更する場合は、それぞれの指示に従う。
 
-- **Issue/PR管理はGitHubを使う**（GitHub Issues=ToDo、GitHub Discussions=検討中の議論）。他のツールを使う場合、`AGENTS.md`と`.agents/skills/documentation-rules/SKILL.md`の該当行を書き換える
+- **`AGENTS.md`はこのプロジェクト固有の指示を書く場所**（ビルド・テスト手順、コーディング規約等）。ドキュメント運用のルール本体は`docs/system.md`に分離してあり、`AGENTS.md`はそれを参照するだけの薄いファイルとして同梱されている
+- **Issue/PR管理はGitHubを使う**（GitHub Issues=ToDo、GitHub Discussions=検討中の議論）。他のツールを使う場合、`docs/system.md`と`.agents/skills/documentation-rules/SKILL.md`の該当行を書き換える
 - **単一リポジトリ構成**。モノレポは現状未対応（トリガー: 実際にモノレポ構成が必要になった時に設計する）
 - **ADRは使わない**。決定は反映される場所（AGENTS.md・premise.md・documentation-rules等）に理由を直接書き添え、却下した代替案は`docs/knowledge/`へ記録する（理由: このテンプレートを作ったプロジェクト自身が13本のADRを作った後にやめた経験による）。これは推奨であり強制ではない。複数の選択肢の比較と後戻りコストを伴う重要な決定があるなら、`docs/adr/`を自分で作りADRを使ってよい
 
@@ -14,7 +15,7 @@
 
 **Codex**: `.agents/skills/`・`AGENTS.md`とも直接読むため、追加の作業は不要。
 
-**Claude Code**: `CLAUDE.md`（`@AGENTS.md`のみを書いたファイル）は同梱済みで、追加の作業は不要。Skillだけは例外で、`.claude/skills`が必要（`AGENTS.md`の「セッション開始・再開時に必ず行うこと」4に手順とコマンドがある。初回セッションでAI自身が作成する）。
+**Claude Code**: `CLAUDE.md`（`@AGENTS.md`のみを書いたファイル）は同梱済みで、追加の作業は不要。Skillだけは例外で、`.claude/skills`が必要（`docs/system.md`の「セッション開始・再開時に必ず行うこと」4に手順とコマンドがある。初回セッションでAI自身が作成する）。
 
 ## 3. AIエージェントを特定ツールに固定するか決める
 
@@ -54,7 +55,7 @@ updated: <今日の日付>
 
 ## 6. 確認する
 
-- `AGENTS.md` はセッション開始時に `docs/premise.md` → `.dev/handoff.md`（存在すれば）の順で読む指示になっている
+- `AGENTS.md`は`docs/system.md`を参照するよう指示しており、`docs/system.md`がセッション開始時に `docs/premise.md` → `.dev/handoff.md`（存在すれば）の順で読む手順を持つ
 - `.dev/handoff.md` はまだ存在しない。最初の作業セッションの終わりに `.dev/handoff-template.md` を元に作る
 - `docs/knowledge/`・`.dev/scratch/`・`.dev/todo.md` は、必要になった時点で作る（最初から空ディレクトリ/ファイルを用意する必要はない）。`docs/knowledge/`は判断も手順も伴わない確定した内容の置き場所、`.dev/scratch/`はAIも参照する検討メモの置き場所、`.dev/todo.md`はセッション内で完結する実行項目の置き場所。**新しいディレクトリを作る際は、必ず`index.md`も同時に作る**（`.agents/`配下を除く。`.agents/skills/documentation-rules/SKILL.md`参照）
 - 同梱の`.agents/skills/*/SKILL.md`等に入っている`updated`日付はこのテンプレートの配布時点のもの。使い始めた時点で一律更新する必要はなく、実際に編集した時に更新すればよい

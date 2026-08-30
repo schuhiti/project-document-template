@@ -1,7 +1,7 @@
 ---
 type: knowledge
 tags: [structure, root-template-sync]
-updated: 2026-08-29
+updated: 2026-08-30
 ---
 # root/templateのビルド
 
@@ -19,8 +19,10 @@ root（このプロジェクト自身）と`project-template/`（配布用テン
 
 ## root専用（templateに存在しない）
 
-`docs/premise.md`、`handoff.md`、`.dev/scratch/*`、`docs/knowledge/*`
+`docs/premise.md`、`handoff.md`、`.dev/scratch/*`、`docs/knowledge/*`、`AGENTS.md`（内容がテンプレート版と異なるため。以下参照）
 
 ## テンプレート固有の一次情報（`.dev/template-src/`に保持）
 
-`SETUP.md`、`docs/index.md`（テンプレート版の内容）
+`SETUP.md`、`docs/index.md`（テンプレート版の内容）、`AGENTS.md`（テンプレート版）、`docs/system.md`
+
+テンプレート版`AGENTS.md`・`docs/system.md`は、root版`AGENTS.md`を「プロジェクト固有の指示を書く薄いAGENTS.md」と「ドキュメント運用ルール本体（docs/system.md）」に分割したもの。root版`AGENTS.md`をそのまま配布すると、配布先プロジェクト自身の固有の指示（AGENTS.mdエコシステムで一般的に書かれる内容）を書く場所が無くなるため分離した。自動生成はせず、root版`AGENTS.md`を大きく変更した際に手動で反映する。

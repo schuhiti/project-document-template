@@ -4,8 +4,10 @@
 # 設計方針（docs/knowledge/root-template-sync.md参照）:
 # - project-template/はビルド成果物として扱い、都度作り直す（差分更新はしない）。
 #   これにより「このファイルは同期対象か手動維持か」を都度判断する必要が無くなる
-# - テンプレート固有の一次情報（root側に対応物が無いもの）は .dev/template-src/ に
-#   ソースとして置く。SETUP.md、docs/index.md（テンプレート版）がこれに該当する
+# - テンプレート固有の一次情報（root側に対応物が無いもの、またはroot側と役割が
+#   異なるもの）は .dev/template-src/ にソースとして置く。SETUP.md、
+#   docs/index.md（テンプレート版）、AGENTS.md、docs/system.md がこれに該当する
+#   （AGENTS.md/docs/system.mdの分割理由はdocs/knowledge/root-template-sync.md参照）
 # - rootとtemplateで内容が同一であるべきファイルは許可リスト方式でここに列挙する
 # - docs/adr/ はrootのみに存在する（凍結された自プロジェクトの決定履歴）。
 #   ADRは使わない方針を推奨しており、テンプレートには同梱しない
@@ -28,7 +30,6 @@ cp -r "$SRC"/. "$TPL"/
 
 # 3. rootと内容が同一であるべきファイル（許可リスト）
 SHARED_FILES=(
-  "AGENTS.md"
   "CLAUDE.md"
   ".agents/skills/discussion-rules/SKILL.md"
   ".agents/skills/documentation-rules/SKILL.md"
