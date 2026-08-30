@@ -18,6 +18,8 @@ updated: 2026-08-30
 - Claude Code/Codex双方への適合が済んでいる（`.agents/skills/`、`CLAUDE.md`）。`.claude/skills`のWindows対応も決着済み: 管理者権限・開発者モードが無い環境では`ln -s`がエラーなく独立コピーを作ってしまうため`[ -L ]`で検証し、Windowsでは`.gitignore`で除外してセッションごとに作り直す運用（AGENTS.md「必ず行うこと」4＝配布版では`docs/system.md`の4に反映済み）
 - 生きた文書（SKILL.md・document-types.md・docs/index.md）からの装飾的なADR番号引用は整理済み。scratchの2ファイルにあった「skill昇格基準」の誤引用（正しい参照先はADR-0004ではなく`document-types.md`のskill行）も修正済み
 - documentation-rulesに「文章構造の原則」（手順と理由を分離する、自明な補集合を重ねて書かない、主題語の反復を避ける、実装手段の詳細を二重に書かない）を追加済み
+- `tags`の用途をドメイン・性質による複数文書のグルーピングに限定し、共有先の無い一意の値（ファイル名の言い換え等）を禁止した
+- scratch/knowledgeの見直し契機が「定期的」としか書かれておらず未定義だった問題を修正: scratchはセッション境界で`index.md`を確認、knowledgeは参照時に正しさを確認する、という具体的な手続きを`document-types.md`に追記した
 
 ## なぜそうしているか (Why)
 
@@ -30,7 +32,9 @@ updated: 2026-08-30
 ## 未決事項・懸念
 
 - discussion-rulesは未決定・保留の扱いに内容が偏っている。トリガー: 該当する知見が実際に繰り返し必要になった時（`.dev/scratch/discussion-rules-scope-gap.md`）
-- scratchにおける時系列記録の例外は仮運用のまま、該当事例なし
+- scratchにおける時系列記録の例外は仮運用のまま、該当事例なし（`.dev/scratch/scratch-timeseries-recording.md`）
+- 繰り返される操作のスクリプト化を検討中、まだ3回以上の実例は無い。トリガー: 同じ手作業を3回以上繰り返していると具体的に気づいた時（`.dev/scratch/repeated-operations-scripting.md`）
+- 想定する作業の6フェーズモデルの妥当性が未検証。トリガー: 作業サイクルを何度か回した後に振り返る（`.dev/scratch/six-phase-model.md`）
 - `skills/*/SKILL.md`に追加した`type: skill`・`updated`フィールドは仮
 - flat-fileチケットツール導入要否は保留。トリガー: ローカルでのGitHub往復が実際に摩擦になるか
 - Handoffテンプレートは単一の作業スレッドのみを想定。複数スレッド並行時の構成は未検証
