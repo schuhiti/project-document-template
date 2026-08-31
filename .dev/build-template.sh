@@ -46,6 +46,7 @@ SHARED_FILES=(
   ".claude/hooks/check-frontmatter.sh"
   ".claude/hooks/check-handoff-length.sh"
   ".claude/hooks/check-index-sync.sh"
+  ".claude/setup-skills.sh"
 )
 for f in "${SHARED_FILES[@]}"; do
   mkdir -p "$(dirname "$TPL/$f")"

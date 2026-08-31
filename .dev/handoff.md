@@ -27,6 +27,7 @@ updated: 2026-08-31
 - hookの実効性を洗い直した。`Stop`/`PreCompact`のexit 0出力（stdout/stderr）はデバッグログのみでClaudeに届かないと判明（公式ドキュメント・実機両方で確認）。`session-boundary-reminder.sh`を`hookSpecificOutput.additionalContext`形式に書き換えて修正済み（Stop/PreCompactとも対応、PreCompactでは圧縮後も内容が保持される）。さらにStopは毎ターン発火するため、作業ツリーがクリーンかつ`.dev/todo.md`が空なら鳴らさない条件を追加した
 - `pre-commit-doc-reminder.sh`（PreToolUse、commit前チェック）は廃止した。PreToolUseは`additionalContext`非対応でブロックする以外にClaudeへ届ける手段が無く、ブロックすると同一条件で無限ループするため。理由と却下した代替案は`docs/knowledge/pretooluse-hook-limits.md`に記録し、対応するscratchは削除した。以後commit前の文書構造確認は習慣（`git diff --staged`を読む）で対応する
 - hookのテンプレート配布を決定・実装した（`docs/knowledge/hook-distribution-policy.md`）: frontmatter必須・handoff行数目安・index.md整合の3種を配布（hookスクリプトはSHARED_FILES、settings.jsonはroot版と内容が違うため`.dev/template-src/.claude/settings.json`で個別管理）。Stop hookはroot専用のまま配布しない。`jq`が無い環境向けの条件分岐はスクリプト化せず`SETUP.md`への手順追記のみ。Codex互換hookは需要が出るまで見送り。あわせて「ツールに固定しない」前提が互換レイヤー開発を意味しない旨を`docs/knowledge/tool-neutrality-scope.md`・READMEに明記した
+- `.claude/skills`セットアップ手順が肥大化していたため、プローズから`.claude/setup-skills.sh`へ切り出し、AGENTS.md/docs/system.mdの「必ず行うこと」4は1〜2行のポインタにした。失敗時の扱いも「記録して黙認」から「非ゼロ終了→人間に報告してブロック」へ強化した（`docs/knowledge/claude-skills-setup-script.md`）。あわせてClaude Code固定プロジェクト向けに`.agents/`を`.claude/`へリネームして一本化する選択肢を`SETUP.md`に追記した。build-template.shのSHARED_FILESに`.claude/setup-skills.sh`を追加し、再ビルドして動作確認済み
 
 ## なぜそうしているか (Why)
 

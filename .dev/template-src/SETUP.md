@@ -15,7 +15,7 @@
 
 **Codex**: `.agents/skills/`・`AGENTS.md`とも直接読むため、追加の作業は不要。
 
-**Claude Code**: `CLAUDE.md`（`@AGENTS.md`のみを書いたファイル）は同梱済みで、追加の作業は不要。Skillだけは例外で、`.claude/skills`が必要（`docs/system.md`の「セッション開始・再開時に必ず行うこと」4に手順とコマンドがある。初回セッションでAI自身が作成する）。`.claude/settings.json`・`.claude/hooks/`（frontmatter必須・handoff行数目安・index.md整合をPostToolUseで機械チェックするhook）も同梱済みだが、`jq`コマンドに依存する。`jq --version`が通らない環境では、この2つを削除する（無いまま残すとhookがエラーになる）。
+**Claude Code**: `CLAUDE.md`（`@AGENTS.md`のみを書いたファイル）は同梱済みで、追加の作業は不要。Skillだけは例外で、`.claude/skills`が必要（`docs/system.md`の「セッション開始・再開時に必ず行うこと」4が`.claude/setup-skills.sh`を実行する指示になっている。初回セッションでAI自身が実行する）。`.claude/settings.json`・`.claude/hooks/`（frontmatter必須・handoff行数目安・index.md整合をPostToolUseで機械チェックするhook）も同梱済みだが、`jq`コマンドに依存する。`jq --version`が通らない環境では、この2つを削除する（無いまま残すとhookがエラーになる）。
 
 ## 3. AIエージェントを特定ツールに固定するか決める
 
@@ -23,6 +23,7 @@
 
 - **AGENTS.mdに指示を書く場合**（既定。ツールを固定してもよくある選択。移植性やエコシステムの慣習を理由に選べる）: 何もしなくてよい。ツールを固定するかどうかの事実は、4の質問の回答としてpremise.mdに書く
 - **特定ツールのファイル（例: CLAUDE.md）に指示を書く場合**: `AGENTS.md`冒頭を新しい構成に書き換える。premise.mdにもその判断を記録する
+- **`.agents/`を`.claude/`へリネームして一本化する**（Claude Code固定を選ぶ場合のみ）: `.claude/setup-skills.sh`によるシンボリックリンク/ジャンクション作成が不要になる。代わりにCodexは`.agents/skills/`を直接読むため使えなくなる。選ぶ場合は`.claude/setup-skills.sh`を削除し、`.agents/skills/documentation-rules/SKILL.md`内の`.agents/`配下という記述を書き換え、premise.mdにその判断を記録する
 
 ## 4. 質問に答える
 

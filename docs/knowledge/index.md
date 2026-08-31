@@ -13,3 +13,4 @@ updated: 2026-08-31
 | [pretooluse-hook-limits.md](pretooluse-hook-limits.md) | PreToolUseフックでのcommit前チェックは廃止した |
 | [tool-neutrality-scope.md](tool-neutrality-scope.md) | ツール非依存は目指す方向であり厳密な制約ではない |
 | [hook-distribution-policy.md](hook-distribution-policy.md) | hookのフレームワーク配布方針 |
+| [claude-skills-setup-script.md](claude-skills-setup-script.md) | `.claude/skills`のセットアップはスクリプト化し失敗をハードエラーにした |
