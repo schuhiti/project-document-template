@@ -44,6 +44,7 @@ updated: 2026-08-31
   - `AGENTS.md`（AGENTS.md仕様）
   - `CLAUDE.md`（Claude Code仕様。内容は`@AGENTS.md`のみ）
   - `.agents/`配下すべて（Agent Skills / AGENTS.mdエコシステムの標準構造）。ただし`SKILL.md`には横断検索のため`type: skill`・`updated`を追加で付与する（仕様と両立する）。Claude Code用の`.claude/skills`はここへのシンボリックリンク
+- `docs/system.md`（テンプレート配布版）は`AGENTS.md`から分割した内容のため、`AGENTS.md`と同じ理由でfrontmatter対象外（分割理由は`docs/knowledge/root-template-sync.md`参照）
 - `SETUP.md`等、使い捨てのオンボーディング文書は永続的な知識体系に属さないためfrontmatter対象外
 - `README.md`等、ディレクトリの説明・ナビゲーション用の文書もfrontmatter対象外。`index.md`は機械的な一覧に限定するため、説明文はREADME側に書き分ける
 - 対象外の一覧は本Skillが保持する。新たな対象外が生じた場合はここに追記する
