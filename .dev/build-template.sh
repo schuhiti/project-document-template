@@ -37,6 +37,7 @@ cp -r "$SRC"/. "$TPL"/
 
 # 3. rootと内容が同一であるべきファイル（許可リスト）
 SHARED_FILES=(
+  ".gitattributes"
   "CLAUDE.md"
   ".agents/skills/discussion-rules/SKILL.md"
   ".agents/skills/documentation-rules/SKILL.md"

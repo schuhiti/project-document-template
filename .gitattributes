@@ -1,0 +1,2 @@
+# core.autocrlf=trueの環境ではチェックアウト時にCRLF化され、bashが解釈できなくなる
+*.sh text eol=lf
