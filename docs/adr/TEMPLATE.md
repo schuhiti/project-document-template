@@ -1,6 +1,5 @@
 ---
 type: template
-for: adr
 updated: 2026-08-24
 ---
 # ADRテンプレート

@@ -1,6 +1,5 @@
 ---
 type: template
-for: handoff
 updated: 2026-08-24
 ---
 # Handoff テンプレート
