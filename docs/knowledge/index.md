@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-08-31
+updated: 2026-09-02
 ---
 # knowledge 索引
 
@@ -14,3 +14,4 @@ updated: 2026-08-31
 | [tool-neutrality-scope.md](tool-neutrality-scope.md) | ツール非依存は目指す方向であり厳密な制約ではない |
 | [hook-distribution-policy.md](hook-distribution-policy.md) | hookのフレームワーク配布方針 |
 | [claude-skills-setup-script.md](claude-skills-setup-script.md) | `.claude/skills`のセットアップはスクリプト化し失敗をハードエラーにした |
+| [stop-hook-boundary-mismatch.md](stop-hook-boundary-mismatch.md) | Stopをセッション境界リマインダーに使うのをやめた |
