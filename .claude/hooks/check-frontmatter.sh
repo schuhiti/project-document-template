@@ -8,6 +8,11 @@ case "$file" in
   *) exit 0 ;;
 esac
 
+# documentation-rulesのfrontmatter対象外規定と一致させる
+case "$(basename "$file")" in
+  system.md|README.md) exit 0 ;;
+esac
+
 if head -n 1 "$file" | grep -q '^---$' && grep -q '^type:' "$file"; then
   exit 0
 fi
