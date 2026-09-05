@@ -20,7 +20,7 @@ Claude Code用の`CLAUDE.md`のように他ツール固有のファイルが必�
 | 決定とその理由 | `adr` | `docs/adr/` | 関連作業時 |
 | 判断も手順も伴わない確定した内容（ドメイン概念・外部APIの癖・自システムの設計内容等） | `knowledge` | `docs/knowledge/` | オンデマンド |
 | 検討メモ | `scratch` | `.dev/scratch/` | オンデマンド（`.dev/handoff.md`のポインタ経由） |
-| 手順・ルール（議論の進め方／文書化の判断／設計実装の作法） | `skill` | `.agents/skills/`（SKILL.md）。Claude Code用の`.claude/skills`は「必ず行うこと」4を参照 | 該当タスク時 |
+| 手順・ルール（議論の進め方／文書化の判断／文体／設計実装の作法） | `skill` | `.agents/skills/`（SKILL.md）。Claude Code用の`.claude/skills`は「必ず行うこと」4を参照 | 該当タスク時 |
 | 引き継ぎ状態 | `handoff` | `.dev/handoff.md` | セッション開始・再開時 |
 | セッション内の実行項目 | `todo` | `.dev/todo.md` | セッション内で自由に |
 | 索引 | `index` | 各ディレクトリの`index.md` | オンデマンド |
@@ -28,4 +28,4 @@ Claude Code用の`CLAUDE.md`のように他ツール固有のファイルが必�
 | 未決着の議論 | — | GitHub Discussions | 該当議論時 |
 
 ## 文書を書く際の原則
-→ `.agents/skills/documentation-rules/SKILL.md` を参照。議論の進め方は `.agents/skills/discussion-rules/SKILL.md` を参照。
+→ `.agents/skills/documentation-rules/SKILL.md` を参照。議論の進め方は `.agents/skills/discussion-rules/SKILL.md`、文体は `.agents/skills/writing-style-rules/SKILL.md` を参照。

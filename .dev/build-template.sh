@@ -42,6 +42,7 @@ SHARED_FILES=(
   ".agents/skills/discussion-rules/SKILL.md"
   ".agents/skills/documentation-rules/SKILL.md"
   ".agents/skills/documentation-rules/references/document-types.md"
+  ".agents/skills/writing-style-rules/SKILL.md"
   ".dev/handoff-template.md"
   ".dev/index.md"
   ".claude/hooks/check-frontmatter.sh"
