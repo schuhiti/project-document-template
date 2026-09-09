@@ -1,33 +1,9 @@
 # AGENTS.md
 
-エージェント向けの指示は本ファイルに書く。本文は最小限に保ち、詳細は各ドキュメントへのポインタに留める。
-
-Claude Code用の`CLAUDE.md`のように他ツール固有のファイルが必要な場合も、内容を複製せず本ファイルを参照するだけにする（現に`CLAUDE.md`は`@AGENTS.md`のみをインポートしている）。シンボリックリンクにしなかったのはWindowsでの管理者権限要件のため（同じ制約は`.claude/setup-skills.sh`のコメントを参照）。
+エージェント向けの指示は本ファイルに書く。Claude Code用の`CLAUDE.md`のように他ツール固有のファイルが必要な場合も、内容を複製せず本ファイルを参照するだけにする（現に`CLAUDE.md`は`@AGENTS.md`のみをインポートしている）。シンボリックリンクにしなかったのはWindowsでの管理者権限要件のため（同じ制約は`.claude/setup-skills.sh`のコメントを参照）。
 
 前提: `docs/premise.md` が存在しない場合、先に `SETUP.md` を実行してから以降の内容に従う。
 
-## セッション開始・再開時に必ず行うこと
-1. `docs/premise.md` を読む
-2. `.dev/handoff.md` が存在すれば読む（前回セッションからの引き継ぎ状態）
-3. 2で食い違いに気づいた場合、現在の作業状況は `.dev/handoff.md` を優先する。前提や決定そのものが対象なら、機械的にどちらかを正とせず、各文書の`updated`を手がかりに人間へ報告して確認を仰ぐ。すぐに応答が無ければ、無関係な作業は進めてよい
-4. `bash .claude/setup-skills.sh` を実行する（`.claude/skills`のセットアップ。既に有効なら即終了する）。非ゼロで終了したら自己判断で回避せず、エラー内容をそのまま人間に報告して指示を仰ぐ。Skillを読めない状態のまま作業を続けると、本Skill体系の前提が成立しない（経緯: `docs/knowledge/claude-skills-setup-script.md`）
-
-## ドキュメントの参照先
-
-| 種別 | type値 | 場所 | 参照タイミング |
-|---|---|---|---|
-| プロジェクト前提 | `premise` | `docs/premise.md` | 常時 |
-| 決定とその理由 | `adr` | `docs/adr/` | 関連作業時 |
-| 判断も手順も伴わない確定した内容（ドメイン概念・外部APIの癖・自システムの設計内容等） | `knowledge` | `docs/knowledge/` | オンデマンド |
-| 検討メモ | `scratch` | `.dev/scratch/` | オンデマンド（`.dev/handoff.md`のポインタ経由） |
-| 手順・ルール（議論の進め方／文書化の判断／文体／コードコメント） | `skill` | `.agents/skills/`（SKILL.md）。Claude Code用の`.claude/skills`は「必ず行うこと」4を参照 | 該当タスク時 |
-| 引き継ぎ状態 | `handoff` | `.dev/handoff.md` | セッション開始・再開時 |
-| セッション内の実行項目 | `todo` | `.dev/todo.md` | セッション内で自由に |
-| 索引 | `index` | 各ディレクトリの`index.md` | オンデマンド |
-| 実行項目・状態（doneが明確でセッションをまたぐもの） | — | GitHub Issues | 作業計画時 |
-| 未決着の議論 | — | GitHub Discussions | 該当議論時 |
-
-## 文書を書く際の原則
-→ `.agents/skills/documentation-rules/SKILL.md` を参照。議論の進め方は `.agents/skills/discussion-rules/SKILL.md`、文体は `.agents/skills/writing-style-rules/SKILL.md`、コードコメントは `.agents/skills/code-comment-rules/SKILL.md` を参照。
+ドキュメント運用のルール（セッション開始時の手順・文書の参照先・文書化の原則）は `docs/system.md` を参照し、常に従う。
 
 チャットでの応答にも `writing-style-rules` を適用する。同Skillが応答を対象外としているのは配布先まで規定しないためで、配布されるファイルなので記述は変えない。

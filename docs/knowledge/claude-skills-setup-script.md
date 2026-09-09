@@ -1,7 +1,7 @@
 ---
 type: knowledge
 tags: [structure, decision]
-updated: 2026-08-31
+updated: 2026-09-10
 ---
 # `.claude/skills`のセットアップはスクリプト化し、失敗はハードエラーにした
 
@@ -12,3 +12,5 @@ updated: 2026-08-31
 セットアップは実質べき等で、有効なリンクが既にあれば即終了する。「セッションごとに必ず行う」のは既存の状態を確認する1ステップであって、フルの再作成ではない。
 
 あわせて、Claude Code固定を選ぶプロジェクト向けに、`.agents/`を`.claude/`へリネームして一本化する選択肢を`SETUP.md`に追記した。この場合`.claude/setup-skills.sh`自体が不要になる代わりに、Codexは`.agents/skills/`を直接読むため使えなくなる。
+
+到達経路: 索引のみ

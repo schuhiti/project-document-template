@@ -28,6 +28,7 @@ cp -r "$SRC"/. "$TPL"/
 SHARED_FILES=(
   ".gitattributes"
   "CLAUDE.md"
+  "docs/system.md"
   ".agents/skills/code-comment-rules/SKILL.md"
   ".agents/skills/discussion-rules/SKILL.md"
   ".agents/skills/documentation-rules/SKILL.md"

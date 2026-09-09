@@ -1,5 +1,5 @@
 #!/bin/bash
-# .claude/skills のセットアップ。AGENTS.md/docs/system.mdの
+# .claude/skills のセットアップ。docs/system.mdの
 # 「セッション開始・再開時に必ず行うこと」から呼ばれる。
 #
 # 既に有効なリンクがあれば即終了(べき等)。無ければ ln -s を試み、
@@ -11,7 +11,7 @@
 #
 # いずれも失敗したら非ゼロで終了する。Skillを読めない状態のまま黙って
 # 作業を続けるのは本Skill体系の前提が壊れているに等しいため、ここで
-# 止めて人間に報告する(AGENTS.md/docs/system.md側の指示)。
+# 止めて人間に報告する(docs/system.md側の指示)。
 #
 # 真のリンク・ジャンクションいずれでコミットしても、真のリンクは
 # core.symlinks=false の環境で正しく取り出せず、ジャンクションは
