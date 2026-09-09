@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-08-29
+updated: 2026-09-09
 ---
 # ADR一覧
 
@@ -24,4 +24,6 @@ updated: 2026-08-29
 | [0012](0012-adr-0010-triggers.md) | ADR-0010の未確認事項に再検討トリガーを補う | accepted |
 | [0013](0013-knowledge-type.md) | 判断も手順も伴わない確定した内容を書く`knowledge`種別を新設し、`design`を統合する | accepted |
 
-ADRの新規作成は終了しているため、このファイルは静的（`docs/knowledge/adr-retirement.md`参照）。稀な例外でADRを追加する場合は、この表に手動で1行追加する。
+上の13本は連番・Status付きで運用していた時期のもので、凍結済み（`docs/knowledge/adr-retirement.md`参照）。以後は`knowledge`の経緯記録が`documentation-rules`の「決定・経緯の記録」の4条件を満たした時点でここへ移し、日付+スラッグのファイル名で上の表に1行追加する。Status列は空でよい。
+
+経緯は全ての決定について書くわけではないので、この一覧は決定の全集合ではない。記録が無いことは検討していないことを意味しない。

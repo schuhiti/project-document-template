@@ -13,10 +13,9 @@
 #   なのでSHARED_FILESに列挙する）
 # - rootとtemplateで内容が同一であるべきファイルは許可リスト方式でここに列挙する
 # - docs/adr/ はrootのみに存在する（凍結された自プロジェクトの決定履歴）。
-#   ADRは使わない方針を推奨しており、テンプレートには同梱しない
-# - root自身のdocs/adr/index.mdは、ADRの新規作成をやめたため静的なファイルであり、
-#   自動生成しない（生成する対象が増えることが無いため）。新たにADRを追加する
-#   稀な例外が生じた場合は手動で更新する
+#   ADRを最初から作らない方針を推奨しており、テンプレートには同梱しない
+# - root自身のdocs/adr/index.mdは自動生成しない（rootのみに存在し、
+#   追加は経緯記録をknowledgeから移す時に限られるため）
 # - zip作成は`zip`コマンド優先、無ければWindows標準のpowershell.exeに
 #   フォールバックする（Git Bash/WSLどちらにも`zip`が同梱されていないため）。powershell.exeは
 #   PATH上に無い場合の既定インストール先も試し、Windows側パスへの変換はcygpath（Git Bash）・

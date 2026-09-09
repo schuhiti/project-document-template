@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-08-31
+updated: 2026-09-09
 ---
 # scratch 索引
 
@@ -11,3 +11,4 @@ updated: 2026-08-31
 | [discussion-rules-scope-gap.md](discussion-rules-scope-gap.md) | discussion-rulesの適用範囲の偏り、検討中 |
 | [repeated-operations-scripting.md](repeated-operations-scripting.md) | 繰り返される操作のスクリプト化、検討中 |
 | [codex-session-boundary-hook.md](codex-session-boundary-hook.md) | Codexのセッション境界hookは保留、検討中 |
+| [decision-provenance.md](decision-provenance.md) | 決定と経緯の接続、検討中 |
