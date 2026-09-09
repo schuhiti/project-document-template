@@ -29,3 +29,5 @@ Claude Code用の`CLAUDE.md`のように他ツール固有のファイルが必�
 
 ## 文書を書く際の原則
 → `.agents/skills/documentation-rules/SKILL.md` を参照。議論の進め方は `.agents/skills/discussion-rules/SKILL.md`、文体は `.agents/skills/writing-style-rules/SKILL.md`、コードコメントは `.agents/skills/code-comment-rules/SKILL.md` を参照。
+
+チャットでの応答にも `writing-style-rules` を適用する。同Skillが応答を対象外としているのは配布先まで規定しないためで、配布されるファイルなので記述は変えない。
