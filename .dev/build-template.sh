@@ -1,22 +1,12 @@
 #!/bin/bash
 # project-template/ を毎回ゼロから組み立てるビルドスクリプト
 #
-# 設計方針（docs/knowledge/root-template-sync.md参照）:
-# - project-template/はビルド成果物として扱い、都度作り直す（差分更新はしない）。
-#   これにより「このファイルは同期対象か手動維持か」を都度判断する必要が無くなる
-# - テンプレート固有の一次情報（root側に対応物が無いもの、またはroot側と役割が
-#   異なるもの）は .dev/template-src/ にソースとして置く。SETUP.md、
-#   docs/index.md（テンプレート版）、AGENTS.md、docs/system.md、.claude/settings.json
-#   がこれに該当する（AGENTS.md/docs/system.mdの分割理由はdocs/knowledge/root-template-sync.md参照。
-#   .claude/settings.jsonはroot版がStop/PreCompactのhookも含み中身が異なるため
-#   ここに置く。参照先のhookスクリプト自体（.claude/hooks/*.sh）は中身が同一
-#   なのでSHARED_FILESに列挙する）
-# - rootとtemplateで内容が同一であるべきファイルは許可リスト方式でここに列挙する
-# - docs/adr/ はrootのみに存在する（凍結された自プロジェクトの決定履歴）。
-#   ADRを最初から作らない方針を推奨しており、テンプレートには同梱しない
-# - root自身のdocs/adr/index.mdは自動生成しない（rootのみに存在し、
-#   追加は経緯記録をknowledgeから移す時に限られるため）
-# - zip作成は`zip`コマンド優先、無ければWindows標準のpowershell.exeに
+# 構成: docs/knowledge/root-template-sync.md
+# 経緯: docs/adr/2026-08-30-template-build-from-source.md
+#
+# hookの配布先の振り分け（.claude/settings.json と .claude/hooks/*.sh で異なる）:
+#   docs/knowledge/hook-distribution-policy.md
+# zip作成は`zip`コマンド優先、無ければWindows標準のpowershell.exeに
 #   フォールバックする（Git Bash/WSLどちらにも`zip`が同梱されていないため）。powershell.exeは
 #   PATH上に無い場合の既定インストール先も試し、Windows側パスへの変換はcygpath（Git Bash）・
 #   wslpath（WSL）のどちらか使える方を使う。zip作成には`Compress-Archive`ではなく.NETの

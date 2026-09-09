@@ -13,13 +13,13 @@ updated: 2026-09-09
 - **不変化した記録の置き場所**。rootは`docs/adr/`に連番の凍結13本があり、そこへ日付+スラグの新しい記録を混ぜることになる。索引はStatus列を持つ行と持たない行が混在する。実際に1本目を移す時に、混在のまま進めるか分けるかを決める
 - **経緯が無い決定について後から根拠を問われた回数**。事前に経緯を付けるべき範囲を広げるかどうかの判断材料になる。観測可能なので数える
 
-## 4条件を満たしていない既存文書
+## 既存文書の分割（2026-09-09に実施）
 
-`docs/knowledge/`の実測（2026-09-09）。分割・抽出が要るもの。
+- `pretooluse-hook-limits.md`（条件2）: 運用を`writing-style-rules`の「構成」へ移し、knowledge側は1行のポインタにした
+- `root-template-sync.md`（条件3）: 決定と理由を`docs/adr/2026-08-30-template-build-from-source.md`へ抜き出し、knowledge側は構成の説明とポインタだけを持つ形にした。これが4条件による`adr`昇格の1件目
+- `hook-distribution-policy.md`（条件4）: Codex互換hookの保留を`.dev/scratch/codex-hook-compat.md`へ移した。既存のセッション境界hookの検討と同じ論点なので統合した
 
-- `pretooluse-hook-limits.md`: 「commit前に`git diff --staged`を読む習慣」がこの文書1箇所にしか無く、生きた文書へ抽出されていない（条件2違反）。凍結すると運用ごと過去側に取り残される
-- `root-template-sync.md`: 前半がビルド方式への設計変更とその理由（決定）、後半がroot専用ファイルの一覧と共有ファイルの注意（現況）。文書単位では不変にできない（条件3違反）
-- `hook-distribution-policy.md`: Codex互換hookの見送りがトリガー付きでこの文書の中にあり、対応する`scratch`が無い（条件4違反）
+残り: `hook-distribution-policy.md`は先頭段落が配布構成の現況（何をSHARED_FILESに入れたか）で、条件3を満たしていない。この現況は`root-template-sync.md`と重なるので、統合先を決めてから動かす
 
 ## 到達可能性の実測（2026-09-09）
 

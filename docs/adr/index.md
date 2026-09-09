@@ -23,6 +23,7 @@ updated: 2026-09-09
 | [0011](0011-agents-directory-boundary.md) | `.agents/`配下全体を外部規約の管轄として本Skillの規約から除外する | accepted |
 | [0012](0012-adr-0010-triggers.md) | ADR-0010の未確認事項に再検討トリガーを補う | accepted |
 | [0013](0013-knowledge-type.md) | 判断も手順も伴わない確定した内容を書く`knowledge`種別を新設し、`design`を統合する | accepted |
+| [2026-08-30](2026-08-30-template-build-from-source.md) | project-template/を同期ではなくビルドで作る | |
 
 上の13本は連番・Status付きで運用していた時期のもので、凍結済み（`docs/knowledge/adr-retirement.md`参照）。以後は`knowledge`の経緯記録が`documentation-rules`の「決定・経緯の記録」の4条件を満たした時点でここへ移し、日付+スラッグのファイル名で上の表に1行追加する。Status列は空でよい。
 
