@@ -19,8 +19,10 @@ root（このプロジェクト自身）と`project-template/`（配布用テン
 
 ## テンプレート固有の一次情報（`.dev/template-src/`に保持）
 
-`SETUP.md`、`docs/index.md`（テンプレート版の内容）、`AGENTS.md`（テンプレート版）、`docs/system.md`
+`SETUP.md`、`docs/index.md`（テンプレート版の内容）、`AGENTS.md`（テンプレート版）、`docs/system.md`、`.claude/settings.json`
 
 テンプレート版`AGENTS.md`・`docs/system.md`は、root版`AGENTS.md`を「プロジェクト固有の指示を書く薄いAGENTS.md」と「ドキュメント運用ルール本体（docs/system.md）」に分割したもの（経緯: 上のADR）。自動生成はせず、root版`AGENTS.md`を大きく変更した際に手動で反映する。
+
+`.claude/settings.json`は、root版がStop/PreCompactのhookも含むため内容が異なる。参照先のhookスクリプト自体（`.claude/hooks/*.sh`）は内容が同一なので共有ファイルとして列挙する。どのhookを配布するかは[hook-distribution-policy.md](hook-distribution-policy.md)。
 
 共有ファイル（許可リスト方式でroot/templateへ同一内容のままコピーされるファイル。`documentation-rules/SKILL.md`等）は、root自身の個別の選択（連番・Status付きADRの凍結、AGENTS.md/docs/system.mdへの分割等）を前提にした記述を書かない。配布先プロジェクトはroot/templateの分割構造自体を持たないため、その前提での助言は意味を成さない。前提が変わりうる場合は条件を明示するか、条件によらない書き方にする。例: 「ドキュメントの参照先」の実体を`AGENTS.md`と名指しする記述は、docs/system.mdに分離したtemplate側では誤りになるため、置き場所をファイル名でなく「ドキュメント参照表」のように役割で参照する。

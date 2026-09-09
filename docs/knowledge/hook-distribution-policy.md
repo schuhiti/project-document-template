@@ -5,7 +5,7 @@ updated: 2026-09-09
 ---
 # hookのフレームワーク配布方針
 
-frontmatter必須・handoff行数目安・index.md整合（PostToolUseの3種）は、`.claude/hooks/*.sh`をSHARED_FILES、`.claude/settings.json`を`.dev/template-src/`として`.dev/build-template.sh`に組み込み、テンプレートへ配布した。settings.jsonはroot版と内容が異なる（root版はStop/PreCompactも含む）ため、テンプレート版は`.dev/template-src/.claude/settings.json`で個別に管理する。
+PostToolUseの3種（frontmatter必須・handoff行数目安・index.md整合）はテンプレートへ配布する。ビルド上の構成は[root-template-sync.md](root-template-sync.md)が持つ。
 
 - `jq`依存は許容する。`jq`が無い環境向けの条件分岐はスクリプト化せず、`SETUP.md`に「`jq --version`が通らなければ`.claude/settings.json`・`.claude/hooks/`を削除する」という手順を追記するだけに留めた（配布フロー自体が手作業前提のため、専用のインストールスクリプトは今の規模に見合わない）
 - メッセージの日本語固定は許容する。このプロジェクトの第一ユーザーは作成者本人であるため
