@@ -10,7 +10,7 @@ Claude Code用の`CLAUDE.md`のように他ツール固有のファイルが必�
 1. `docs/premise.md` を読む
 2. `.dev/handoff.md` が存在すれば読む（前回セッションからの引き継ぎ状態）
 3. 2で食い違いに気づいた場合、現在の作業状況は `.dev/handoff.md` を優先する。前提や決定そのものが対象なら、機械的にどちらかを正とせず、各文書の`updated`を手がかりに人間へ報告して確認を仰ぐ。すぐに応答が無ければ、無関係な作業は進めてよい
-4. `bash .claude/setup-skills.sh` を実行する（`.claude/skills`のセットアップ。既に有効なら即終了する）。非ゼロで終了したら自己判断で回避せず、エラー内容をそのまま人間に報告して指示を仰ぐ。Skillを読めない状態のまま作業を続けると、本Skill体系の前提が成立しない
+4. `bash .claude/setup-skills.sh` を実行する（`.claude/skills`のセットアップ。既に有効なら即終了する）。非ゼロで終了したら自己判断で回避せず、エラー内容をそのまま人間に報告して指示を仰ぐ。Skillを読めない状態のまま作業を続けると、本Skill体系の前提が成立しない（経緯: `docs/knowledge/claude-skills-setup-script.md`）
 
 ## ドキュメントの参照先
 

@@ -32,8 +32,8 @@ updated: 2026-09-09
 | tool-neutrality-scope | README.md |
 | stop-hook-boundary-mismatch | `session-boundary-reminder.sh` |
 | adr-retirement | `docs/adr/index.md` |
-| hook-distribution-policy | knowledge同士のみ |
+| claude-skills-setup-script | AGENTS.md「必ず行うこと」4（今回追加） |
+| hook-distribution-policy | root-template-sync.md（今回追加） |
 | pretooluse-hook-limits | knowledge同士のみ |
-| claude-skills-setup-script | なし |
 
-7本中3本しか規範を持つ文書から指されていない。`claude-skills-setup-script.md`は次にhandoffを上書きした時点で索引以外から到達できなくなる。
+`pretooluse-hook-limits.md`だけがknowledge同士からしか指されていない。反映先が共有ファイル（`writing-style-rules`）で、そこにroot専用のパスは書けないため、ポインタの置き場所が無い。root専用の決定の反映先が共有ファイルにある場合は索引が唯一の経路になる、という形で受け入れる。
