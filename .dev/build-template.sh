@@ -39,6 +39,7 @@ SHARED_FILES=(
   ".claude/hooks/check-handoff-length.sh"
   ".claude/hooks/check-index-sync.sh"
   ".claude/hooks/check-adr-orphan.sh"
+  ".claude/hooks/sweep-doc-checks.sh"
   ".claude/setup-skills.sh"
 )
 for f in "${SHARED_FILES[@]}"; do

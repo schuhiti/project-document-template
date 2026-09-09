@@ -6,6 +6,8 @@
 # 探索先から handoff・todo・scratch・索引を除くのは、どれも書き換え・削除で
 # 消えるため到達経路として数えないという規則による（documentation-rules
 # 「経緯への到達経路」参照）。
+# 探索対象をgitの管理下（追跡済み + ignoreされていない未追跡）に限るのは、
+# ディレクトリを歩くとビルド成果物や依存ライブラリの規模に引きずられるため。
 # 差分から「ポインタを消した編集」を捉えるのではなく毎回全走査するのは、
 # 編集前の状態を持たずに済み、対象が数十ファイルの規模では差が出ないため。
 input=$(cat)
@@ -20,14 +22,12 @@ root="${CLAUDE_PROJECT_DIR:-.}"
 adr_dir="$root/docs/adr"
 [ -d "$adr_dir" ] || exit 0
 
-sources=$(find "$root" \
-  \( -name .git -o -name node_modules -o -name project-template \
-     -o -name worktrees -o -name scratch -o -path "$adr_dir" \) -prune -o \
-  \( -name '*.md' -o -name '*.sh' \) -print \
-  | grep -v -e '/handoff\.md$' -e '/todo\.md$' -e '/index\.md$')
+sources=$(git -C "$root" ls-files --cached --others --exclude-standard -- '*.md' '*.sh' 2>/dev/null \
+  | grep -v -e '^docs/adr/' -e '^\.dev/scratch/' \
+            -e '/handoff\.md$' -e '/todo\.md$' -e '/index\.md$')
 
 [ -n "$sources" ] || exit 0
-corpus=$(cat $sources 2>/dev/null)
+corpus=$(cd "$root" && cat $sources 2>/dev/null)
 
 orphans=""
 for f in "$adr_dir"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.md; do
