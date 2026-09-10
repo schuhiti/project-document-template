@@ -58,7 +58,7 @@ updated: <今日の日付>
 
 - `AGENTS.md`は`docs/system.md`を参照するよう指示しており、`docs/system.md`がセッション開始時に `docs/premise.md` → `.dev/handoff.md`（存在すれば）の順で読む手順を持つ
 - `.dev/handoff.md` はまだ存在しない。最初の作業セッションの終わりに `.dev/handoff-template.md` を元に作る
-- `docs/knowledge/`・`.dev/scratch/`・`.dev/todo.md` は、必要になった時点で作る（最初から空ディレクトリ/ファイルを用意する必要はない）。`docs/knowledge/`は判断も手順も伴わない確定した内容の置き場所、`.dev/scratch/`はAIも参照する検討メモの置き場所、`.dev/todo.md`はセッション内で完結する実行項目の置き場所。**新しいディレクトリを作る際は、必ず`index.md`も同時に作る**（`.agents/`配下を除く。`.agents/skills/documentation-rules/SKILL.md`参照）
+- `docs/knowledge/`・`.dev/scratch/`・`.dev/todo.md` は、必要になった時点で作る（最初から空ディレクトリ/ファイルを用意する必要はない）。`docs/knowledge/`は判断も手順も伴わない確定した内容の置き場所、`.dev/scratch/`はAIも参照する検討メモの置き場所、`.dev/todo.md`はセッション内で完結する実行項目の置き場所。**新しいディレクトリを作る際は、必ず`index.md`も同時に作る**（`.agents/`・`.claude/`配下を除く。`.agents/skills/documentation-rules/SKILL.md`参照）
 - 同梱の`.agents/skills/*/SKILL.md`等に入っている`updated`日付はこのテンプレートの配布時点のもの。使い始めた時点で一律更新する必要はなく、実際に編集した時に更新すればよい
 
 ## 7. 後片付け

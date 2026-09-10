@@ -2,7 +2,7 @@
 name: documentation-rules
 description: 文書（ADR・premise・knowledge・handoff・scratch・todo・skill等）に何を書き、どこに置くかの判断基準。文書の内容・置き場所に関わる判断（何を書くか、どこに置くか、frontmatterの要否等）を伴う場合は、1行の追記であっても必ず参照する。文章の書き方（文体）は`writing-style-rules`を参照。誤字・表記ゆれなど判断を伴わない機械的な修正は対象外。
 type: skill
-updated: 2026-09-09
+updated: 2026-09-11
 ---
 
 # 文書化のルール
@@ -34,13 +34,14 @@ updated: 2026-09-09
 - 外部で規約が確立している文書・ディレクトリは、その規約に従うことを優先し、本Skillの規約（frontmatter・index.md）の対象外とする
   - `AGENTS.md`（AGENTS.md仕様）
   - `CLAUDE.md`（Claude Code仕様。内容は`@AGENTS.md`のみ）
-  - `.agents/`配下すべて（Agent Skills / AGENTS.mdエコシステムの標準構造）。ただし`SKILL.md`には横断検索のため`type: skill`・`updated`を追加で付与する（仕様と両立する）。Claude Code用の`.claude/skills`はここへのシンボリックリンク
+  - `.agents/`配下すべて（Agent Skills / AGENTS.mdエコシステムの標準構造）。ただし`SKILL.md`には横断検索のため`type: skill`・`updated`を追加で付与する（仕様と両立する）
+  - `.claude/`配下すべて（Claude Codeのプロジェクト設定ディレクトリ）。`.claude/skills`は`.agents/skills`へのシンボリックリンク
 - `docs/system.md`は`AGENTS.md`から切り出した指示の本体で、ドキュメント参照表を持つ文書そのもの。表に並ぶ種別のどれにも属さないためfrontmatter対象外
 - `SETUP.md`等、使い捨てのオンボーディング文書は永続的な知識体系に属さないためfrontmatter対象外
 - `README.md`等、ディレクトリの説明・ナビゲーション用の文書もfrontmatter対象外。`index.md`は機械的な一覧に限定するため、説明文はREADME側に書き分ける
 - 対象外の一覧は本Skillが保持する。新たな対象外が生じた場合はここに追記する
 - 各ディレクトリに軽量な`index.md`（`type: index`）を置く。ディレクトリを作る時点で一緒に用意する。ファイルを追加した際は、そのディレクトリの`index.md`にも1行追加する。ファイルを削除した際は該当行も削除する
-  - `.agents/`配下は対象外
+  - `.agents/`・`.claude/`配下は対象外
   - リポジトリ直下には`index.md`を置かない。ドキュメント参照表は「いつ何を読むか」のルーティング表であり、ファイル一覧ではない
 - `index.md`の各行はMarkdownリンク記法`[ファイル名](ファイル名)`で書く（Claude Codeのhookが`](ファイル名)`の形で機械的に照合するため）。まだ存在しないファイル（`SETUP.md`実行前のpremise.md等）へのリンクも構わない
 

@@ -27,13 +27,18 @@
 
 特定のAIエージェントに固定しないことを目指すが、それ自体を主目的とはしない。Claude Code・Codexそれぞれのネイティブな機能（skillsの配置、hook等）を使うことを許容し、両者を統一的に吸収する互換レイヤーの開発は目指さない。詳細は [docs/knowledge/tool-neutrality-scope.md](docs/knowledge/tool-neutrality-scope.md) を参照。
 
-## hookについて
+## 同梱するスクリプト
 
-同梱のhook（frontmatter必須・handoff行数目安・index.md整合の機械チェック、Claude Code向け）は`jq`に依存する。`jq`が無い環境では`.claude/settings.json`・`.claude/hooks/`を使わず、hookは有効にならない。この場合ルール適用の確実性は落ちるが、文書体系自体は`jq`が無くても利用できる。
+Claude Code向けに次のスクリプトを同梱する。どれも`bash`で動かす（WindowsではGit Bash）。
+
+- `.claude/hooks/`: 文書の規約違反（frontmatterの欠落、`index.md`への未掲載等）を、エージェントが文書を編集するたびに機械的に確認するhook。`jq`と`git`に依存する。依存の詳細とhookを増減する際の注意は[.claude/hooks/README.md](.claude/hooks/README.md)を参照
+- `.claude/setup-skills.sh`: `.agents/skills`を指す`.claude/skills`を作る。エージェントがセッション開始時に実行する。有効なリンクが既にあれば何もせず、無ければ`.claude/skills`を削除して作り直す。Windowsでは、シンボリックリンクを作れなければ`powershell.exe`でジャンクションを作る。また`.git/info/exclude`に`.claude/skills`を追記する
+
+`jq`が無い環境では`.claude/settings.json`・`.claude/hooks/`を使わず、hookは有効にならない。この場合ルール適用の確実性は落ちるが、文書体系自体は`jq`が無くても利用できる。
 
 ## このリポジトリ自体について
 
-このリポジトリ自身も、このテンプレートが提案する文書体系に従って運用している。`AGENTS.md` がエージェント向け指示の起点で、`docs/system.md` 相当の内容は `AGENTS.md` に統合されている（配布用テンプレート側では `AGENTS.md` と `docs/system.md` に分割済み。理由は [docs/knowledge/root-template-sync.md](docs/knowledge/root-template-sync.md) を参照）。
+このリポジトリ自身も、このテンプレートが提案する文書体系に従って運用している。`AGENTS.md` がエージェント向け指示の起点で、ドキュメント運用のルール本体は配布用テンプレートと共通の `docs/system.md` にある。このリポジトリと配布用テンプレートで内容が異なるファイルとその扱いは [docs/knowledge/root-template-sync.md](docs/knowledge/root-template-sync.md) を参照。
 
 ## ライセンス
 
