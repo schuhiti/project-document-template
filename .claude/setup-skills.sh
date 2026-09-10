@@ -1,6 +1,8 @@
 #!/bin/bash
 # .claude/skills のセットアップ。docs/system.mdの
 # 「セッション開始・再開時に必ず行うこと」から呼ばれる。
+# Skillとして書けない。.claude/skills が壊れている状況を検知するSkill自体が
+# その .claude/skills 経由でしか読み込めず循環するため。
 #
 # 既に有効なリンクがあれば即終了(べき等)。無ければ ln -s を試み、
 # 真のシンボリックリンクにならなかった場合(Windowsで管理者権限・

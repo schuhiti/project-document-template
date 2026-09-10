@@ -33,7 +33,7 @@ corpus=$(cd "$root" && cat $sources 2>/dev/null)
 orphans=""
 for f in "$adr_dir"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.md; do
   [ -e "$f" ] || continue
-  grep -q '^到達経路: 索引のみ$' "$f" && continue
+  grep -q '^到達経路: 索引のみ' "$f" && continue
   name=$(basename "$f")
   case "$corpus" in
     *"$name"*) ;;
@@ -45,5 +45,5 @@ done
 
 echo "生きた文書から指されていない決定の記録:$orphans" >&2
 echo "退役したのか、ポインタを張り忘れたのか、もともと反映先が無いのかを判断する。" >&2
-echo "反映先が無いと確定しているなら、その記録に「到達経路: 索引のみ」の行を足す。" >&2
+echo "反映先が無いと確定しているなら、その記録に「到達経路: 索引のみ（理由）」の行を足す。" >&2
 exit 2
