@@ -7,6 +7,8 @@
 # 数秒かかるため。
 # 条件は1回の編集で解消する違反に限る。作業中に常に成立する状態を条件にすると
 # 鳴り続けて意味を失う（docs/knowledge/stop-hook-boundary-mismatch.md参照）。
+# 対象の一覧を一時ファイルに落としてからループするのは、パイプで渡すとループが
+# サブシェルになり、集めた結果($found)が失われるため。
 input=$(cat)
 event=$(echo "$input" | jq -r '.hook_event_name // "Stop"')
 hooks="$CLAUDE_PROJECT_DIR/.claude/hooks"
