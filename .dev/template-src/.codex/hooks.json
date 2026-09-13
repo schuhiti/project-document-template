@@ -1,0 +1,17 @@
+{
+  "description": "Document checks",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^apply_patch$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "export CLAUDE_PROJECT_DIR=\"$(git rev-parse --show-toplevel)\"; bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/sweep-doc-checks.sh\"",
+            "commandWindows": "\"C:\\Program Files\\Git\\usr\\bin\\bash.exe\" -lc \"export CLAUDE_PROJECT_DIR=\\\"$(git rev-parse --show-toplevel)\\\"; bash \\\"$CLAUDE_PROJECT_DIR/.claude/hooks/sweep-doc-checks.sh\\\"\""
+          }
+        ]
+      }
+    ]
+  }
+}

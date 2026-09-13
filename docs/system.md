@@ -3,7 +3,7 @@
 `AGENTS.md`から参照される。本文は最小限に保ち、詳細は各ドキュメントへのポインタに留める。
 
 ## セッション開始・再開時に必ず行うこと
-1. `bash .claude/setup-skills.sh` を実行する（`.claude/skills`のセットアップ。既に有効なら即終了する）。非ゼロで終了したら自己判断で回避せず、エラー内容をそのまま人間に報告して指示を仰ぐ。Skillを読めない状態のまま作業を続けると、本Skill体系の前提が成立しない
+1. `.claude/setup-skills.sh`を実行する（`.claude/skills`のセットアップ。既に有効なら即終了する）。Linux/macOSでは`bash .claude/setup-skills.sh`、WindowsではGit Bashの`bash.exe`を絶対パスで呼ぶ。Windowsで`bash`を名前だけで呼ぶとWSLランチャーが選ばれる環境がある。非ゼロで終了したら自己判断で回避せず、エラー内容をそのまま人間に報告して指示を仰ぐ。Skillを読めない状態のまま作業を続けると、本Skill体系の前提が成立しない
 2. `docs/premise.md` を読む
 3. `.dev/handoff.md` が存在すれば読み、そこが指す文書もたどる
 

@@ -19,10 +19,10 @@ root（このプロジェクト自身）と`project-template/`（配布用テン
 
 ## テンプレート固有の一次情報（`.dev/template-src/`に保持）
 
-`SETUP.md`、`docs/index.md`（テンプレート版の内容）、`AGENTS.md`（テンプレート版）、`.claude/settings.json`
+`SETUP.md`、`docs/index.md`（テンプレート版の内容）、`AGENTS.md`（テンプレート版）、`.claude/settings.json`、`.codex/hooks.json`
 
 rootとテンプレートはどちらも、指示を「プロジェクト固有の指示を書く薄い`AGENTS.md`」と「ドキュメント運用ルール本体（`docs/system.md`）」に分けている（経緯: [2026-08-30-template-build-from-source.md](../adr/2026-08-30-template-build-from-source.md)）。`docs/system.md`は共有ファイルなので写す作業は要らない。`AGENTS.md`だけが個別管理で、テンプレート版はプロジェクト固有の指示を書くコメント欄を持ち、root版はチャットへの適用を1行持つ。
 
-`.claude/settings.json`は、root版がStop/PreCompactのhookも含むため内容が異なる。参照先のhookスクリプト自体（`.claude/hooks/*.sh`）は内容が同一なので共有ファイルとして列挙する。どのhookを配布するかは[hook-distribution-policy.md](hook-distribution-policy.md)。
+`.claude/settings.json`はroot版だけがセッション境界リマインダーを含む。`.codex/hooks.json`はroot版とテンプレート版ともに文書検査だけを含むため、内容は異なる。参照先のhookスクリプト自体（`.claude/hooks/*.sh`）は内容が同一なので共有ファイルとして列挙する。どのhookを配布するかは[hook-distribution-policy.md](hook-distribution-policy.md)。
 
 共有ファイル（許可リスト方式でroot/templateへ同一内容のままコピーされるファイル。`documentation-rules/SKILL.md`等）は、root自身の個別の選択（連番・Status付きADRの凍結、root/templateの分割構造等）を前提にした記述を書かない。配布先プロジェクトはその構造を持たないため、その前提での助言は意味を成さない。前提が変わりうる場合は条件を明示するか、条件によらない書き方にする。例: 置き場所をファイル名で名指しせず、「ドキュメント参照表」のように役割で参照する。

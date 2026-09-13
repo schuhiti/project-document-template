@@ -1,20 +1,20 @@
 ---
 type: scratch
 status: 検討中
-updated: 2026-09-09
+updated: 2026-09-13
 ---
-# 検討: Codex向けhookの互換実装は保留
+# 検討: Codex向けhook対応
 
-Claude Code用に`.claude/hooks/`へ置いた5種のうち、Codexへ移せるかどうかは種類によって事情が違う。どちらも保留で、トリガーが別なので分けて持つ。
+確定した配布方針と実行経路は、[hook-distribution-policy.md](../../docs/knowledge/hook-distribution-policy.md)と[root-template-sync.md](../../docs/knowledge/root-template-sync.md)を参照する。
 
-## セッション境界リマインダー
+## 未解決事項
 
-Claude Codeでは`Stop`/`PreCompact`が「セッション境界」の粒度と一致するため、`session-boundary-reminder.sh`をそのまま割り当てられた。Codexには同じ粒度のイベントが無い。`Stop`はターンごとに発火し、`SessionEnd`は「会話削除/アーカイブ/30分以上放置」で発火するため、意図した区切り（作業の中断・終了直前、コンテキスト圧縮前後）と一致しない。加えて[openai/codex#17532](https://github.com/openai/codex/issues/17532)で、repo-local `.codex/config.toml`経由の`SessionStart`/`Stop`フックが対話セッションで発火しないバグが未解決のまま報告されている。
+- Windows版Codex Desktopが、信頼済みの`PostToolUse` hookを実際に実行しているか。`additionalContext`は画面表示ではなくモデル向けなので、作業ログだけでは判定できない。
+- Desktopのhook信頼状態がプロジェクト単位で保持されるのか、設定変更時に再確認を省略する仕様なのか。
+- CLIまたはDesktopで、信頼済みhookの実行結果を観測できる確認方法があるか。
 
-トリガー: openai/codex#17532が解決した時、またはCodexにセッション境界相当のイベントが追加された時。
+Codexの`PreCompact`は`hookSpecificOutput.additionalContext`に対応しないため、現在の設定には登録しない。
 
-## PostToolUseの4種（frontmatter必須・handoff行数目安・index.md整合・決定の記録の孤立）
+## 確認時の条件
 
-`apply_patch`をmatcherにした同種のhookで機械化できる見込みはある。見送った理由は、matcherとパス抽出ロジックがどちらも別実装になること、Codex側hookは実行前に人間の明示的な信頼登録が要るため配っても自動では有効にならないこと、現時点で具体的な需要が無いこと。
-
-トリガー: Codexユーザーから具体的な要望が出た時。
+Windowsでは`bash`を名前だけで実行せず、Git Bashの絶対パスを使う。Linuxでは標準の`bash`を使う。どちらも`jq`と`git`が必要である。

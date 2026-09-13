@@ -21,6 +21,7 @@
 - 設定・宣言ファイルは既存内容を確認した上で可能なら統合する
   - `.gitattributes`: `*.sh`の改行コードをLFに固定するだけで通常は問題にならないため、`*.sh`関連の記述をgrepで確認し無ければ追記する
   - `.claude/settings.json`: `hooks`オブジェクトを統合する
+  - `.codex/hooks.json`: `hooks`オブジェクトを統合する
 - `CLAUDE.md`・`AGENTS.md`のように自然文で書かれ機械的に統合できないファイルや、統合方法が自明でない場合はコピーを中止し人間に確認する
 
 ## ツール対応方針
@@ -29,9 +30,10 @@
 
 ## 同梱するスクリプト
 
-Claude Code向けに次のスクリプトを同梱する。どれも`bash`で動かす（WindowsではGit Bash）。
+Claude CodeとCodex向けに次のスクリプトを同梱する。どれも`bash`で動かす（WindowsではGit Bash）。
 
 - `.claude/hooks/`: 文書の規約違反（frontmatterの欠落、`index.md`への未掲載等）を、エージェントが文書を編集するたびに機械的に確認するhook。`jq`と`git`に依存する。依存の詳細とhookを増減する際の注意は[.claude/hooks/README.md](.claude/hooks/README.md)を参照
+- `.codex/hooks.json`: Codexの`apply_patch`後に`.claude/hooks/sweep-doc-checks.sh`を呼び出す。Linuxでは標準の`bash`、WindowsではGit Bashの絶対パスを使う
 - `.claude/setup-skills.sh`: `.agents/skills`を指す`.claude/skills`を作る。エージェントがセッション開始時に実行する。有効なリンクが既にあれば何もせず、無ければ`.claude/skills`を削除して作り直す。Windowsでは、シンボリックリンクを作れなければ`powershell.exe`でジャンクションを作る。また`.git/info/exclude`に`.claude/skills`を追記する
 
 `jq`が無い環境では`.claude/settings.json`・`.claude/hooks/`を使わず、hookは有効にならない。この場合ルール適用の確実性は落ちるが、文書体系自体は`jq`が無くても利用できる。
