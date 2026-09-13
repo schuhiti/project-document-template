@@ -9,7 +9,7 @@
 `project-template/`・`project-template.zip` はビルド成果物のためリポジトリに含まれない。次の手順で生成する。
 
 1. このリポジトリをクローンする
-2. `.dev/build-template.sh` を実行し、`project-template/`（と`project-template.zip`）を生成する
+2. `.dev/build-template.sh` を実行し、`project-template/`（と`project-template.zip`）を生成する。Linux/macOSでは`bash .dev/build-template.sh`、WindowsではGit Bashの`bash.exe`を絶対パスで呼ぶ（PowerShellの`bash`はWSLランチャーが選ばれる環境がある）
 3. 生成された中身をコピー先のプロジェクトへ展開する。手順は次節に従う（AIエージェントに実行させる）
 4. `SETUP.md` の手順に従う（AIエージェントに実行させる）
 

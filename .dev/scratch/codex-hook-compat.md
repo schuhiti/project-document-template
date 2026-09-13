@@ -13,6 +13,8 @@ updated: 2026-09-13
 - Desktopのhook信頼状態がプロジェクト単位で保持されるのか、設定変更時に再確認を省略する仕様なのか。
 - CLIまたはDesktopで、信頼済みhookの実行結果を観測できる確認方法があるか。
 
+Codexの公式実装では、プロジェクト層の`.codex/config.toml`にある`hooks`と、同じ`.codex/`の`hooks.json`をどちらも読み込む。両方にhookがある場合は警告されるため、現在のJSON形式を維持し、`config.toml`へ移行しない。
+
 Codexの`PreCompact`は`hookSpecificOutput.additionalContext`に対応しないため、現在の設定には登録しない。
 
 ## 確認時の条件

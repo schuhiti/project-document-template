@@ -5,7 +5,7 @@ updated: 2026-09-13
 ---
 # hookのフレームワーク配布方針
 
-Claude CodeのPostToolUse検査とStopの`sweep-doc-checks.sh`を配布する。Codexでは`.codex/hooks.json`から`apply_patch`後に同じ検査スクリプトを呼び出す。Linuxでは標準の`bash`、WindowsではGit Bashの絶対パスを使う。Windowsの`bash`を名前だけで呼ぶとWSLランチャーが選ばれるため、Windows用のhook設定では絶対パスを指定する。ビルド上の構成は[root-template-sync.md](root-template-sync.md)が持つ。
+Claude CodeのPostToolUse検査とStopの`sweep-doc-checks.sh`を配布する。Codexでは`.codex/hooks.json`から`apply_patch`後に同じ検査スクリプトを呼び出す。Codexはプロジェクト層の`.codex/config.toml`にもhookを定義できるが、このプロジェクトはJSON形式に一本化する。同じプロジェクト層で両方にhookを書くとCodexが警告するため、`config.toml`へ重複定義を追加しない。Linuxでは標準の`bash`、WindowsではGit Bashの絶対パスを使う。Windowsの`bash`を名前だけで呼ぶとWSLランチャーが選ばれるため、Windows用のhook設定では絶対パスを指定する。ビルド上の構成は[root-template-sync.md](root-template-sync.md)が持つ。
 
 - `jq`依存は許容する。`jq`が無い環境向けの条件分岐はスクリプト化せず、`SETUP.md`にhook設定を削除する手順を追記するだけに留めた（配布フロー自体が手作業前提のため、専用のインストールスクリプトは今の規模に見合わない）
 - メッセージの日本語固定は許容する。このプロジェクトの第一ユーザーは作成者本人であるため

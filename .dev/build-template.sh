@@ -52,6 +52,10 @@ done
 # 4. zipを再作成
 rm -f "$BASE/project-template.zip"
 PWSH="$(command -v powershell.exe 2>/dev/null || true)"
+if [ -z "$PWSH" ] && [ -x "/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" ]; then
+  # Git BashではWindows側のPowerShellがPATHに無いことがある
+  PWSH="/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
+fi
 if [ -z "$PWSH" ] && [ -x "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" ]; then
   # WSLではinterop設定次第でpowershell.exeがPATHに無いことがあるため、既定インストール先も試す
   PWSH="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
