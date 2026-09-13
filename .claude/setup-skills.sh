@@ -26,6 +26,15 @@
 # 状況が変わった場合、この仕組み全体を見直す。
 set -u
 
+# CodexはGit Bashを非ログインシェルとして起動する場合があり、
+# Git for Windowsの標準コマンド用パスが初期化されないことがある。
+case "${OSTYPE-}" in
+  msys*|cygwin*)
+    PATH="/usr/bin:/bin${PATH:+:$PATH}"
+    export PATH
+    ;;
+esac
+
 mkdir -p .claude
 
 if [ -L .claude/skills ] && [ -e .claude/skills/documentation-rules/SKILL.md ]; then
